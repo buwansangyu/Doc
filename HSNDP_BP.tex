@@ -1,0 +1,137 @@
+\documentclass[11pt,nonblindrev,fleqn]{article}
+\pagestyle{plain}
+
+%\include{epsf}
+\include{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{mathrsfs,threeparttable,lscape,subfigure,float,booktabs,enumerate,multirow,epstopdf,longtable}
+\usepackage{algorithm,algorithmic,xcolor}
+\usepackage{hyperref,color}
+
+%\usetikzlibrary{shapes,snakes}
+%\newcommand{\USA}{\USAmap}
+
+% Natbib setup for author-year style
+\usepackage{natbib}
+ \bibpunct[, ]{(}{)}{,}{a}{}{,}%
+ \def\bibfont{\small}%
+ \def\bibsep{\smallskipamount}%
+ \def\bibhang{24pt}%
+ \def\newblock{\ }%
+ \def\BIBand{and}%
+
+% Set page dimensions
+\evensidemargin -.5in
+\oddsidemargin -.5in
+\textwidth 7.5in
+\topmargin -0.5in
+\textheight 9in
+
+\newcommand{\singlespace}{\renewcommand{\baselinestretch}{1}\small\normalsize}
+\newcommand{\doublespace}{\renewcommand{\baselinestretch}{1.5}\small\normalsize}
+
+
+\begin{document}
+
+
+\singlespace
+
+\begin{titlepage}
+\title{A branch-and-cut-and-price algorithm for service network design considering heterogeneous fleets and service capacity decision}
+\author{
+	Zujian Wang \\
+	\small{Department of Industrial Engineering} \\
+	\small{Tsinghua University, Beijing 100084, China} \\
+	%\small{200 West Packer Ave., Mohler Lab} \\
+	%\small{Bethlehem, PA, 18015, USA} \\
+	%\small{P: 610 758 6696 F: 610 758 4886} \\
+	\small{\tt wang-zj14@mails.tsinghua.edu.cn} \\
+	}
+\date{} % version 11
+\end{titlepage}
+\maketitle
+
+%\newpage
+
+\abstract{
+Service network design addresses decisions related to selecting transportation services and distributing origin-to-destination commodity flow. In this paper, we consider the usage of heterogeneous fleets to provide transportation services. The amounts of fleets employed by each service decide its capacity. We propose both arc-based and cycle-path based models to formulate the problem.  A branch-and-cut-and-price algorithm is presented to solve the problem. The method includes pricing and cutting techniques, as well as a local search algorithm to obtain upper bound. The computation study indicates the efficiency of the proposed algorithm.
+}
+
+\vspace{.25in}
+
+\noindent {\bf Keywords:} a heterogeneous fleet; column generation;
+
+
+
+%\newpage
+
+%%%%%%%%%%%%%%%%
+% INTRODUCTION %
+%%%%%%%%%%%%%%%%
+
+\doublespace
+%\singlespace
+\section{Introduction}\label{Section_Intro}
+Ha ha \cite{lazic2010variable}
+\section{Literature review}
+
+\section{Model formulation}
+
+\section{Solution method}
+Since the service network design problem is NP-hard, the exact algorithm is difficult to solve the large scale instances optimally. Heuristics and metaheuristics are the common choices in real-life application. But the drawback of heuristics algorithm is that the results cannot be evaluated by lower bound. Therefore we propose a branch-and-cut-and-price method combining the exact and the heuristics algorithm to solve the problem. The exact part mainly contains column generation and cutting plane method to obtain lower bound. The heuristic method uses local search and tabu search techniques to find feasible solutions at nodes on search tree.
+\subsection{Column generation}
+\cite{Andersen2011Branch} proposed a branch-and-price algorithm for service network design with asset management constrains. However heterogeneous vehicles are not taken into consideration in the literature. This paper aims to be devoted to filling the gap.
+%Introduction to column generation
+The linear relaxation of the formulation (\ref{obj})-(\ref{vary}) constitutes the master problem(MP) which is solved by the column generation approach. The number of variables in the MP is exponentially increasing thus it is necessary to concentrate on a restricted master problem(RMP) which contain only a subset of variables in the MP. We initialize the RMP with a limited set of cycle-path variables. To avoid demand constrains violation, the RMP includes path-vehicle flow decision variables entirely. The column generation approach generates columns dynamically until no additional column can be found. Solving the linear relaxation of the MP in the search tree leads to a branch-and-price(B\&P) algorithm.
+\subsubsection{Restricted master problem}
+The restricted master problem works on a subset of cycle-path variables: $\tilde{\mathscr{Q}}\subseteq \mathscr{Q}$ and $\tilde{\mathscr{V}}\subseteq \mathscr{V}$. For purpose of obtaining the linear relaxation, the integrality constraints (\ref{vary}) is replaced with (\ref{varyb}). Dual variables $\alpha_{cv}$, $\beta_c$, and $\gamma_{pv}$ are associated with constrains (\ref{con1}), (\ref{con2}), and (\ref{con3}) respectively.
+\begin{equation}\label{varyb}
+0\leq y_{qv} \leq 1   \quad  \forall q\in\tilde{\mathscr{Q}}, v\in\tilde{\mathscr{V}} \tag{\ref{vary}b}
+\end{equation}
+
+To search for columns whose reduced cost is negative but are not included in the RMP, we solve the linear relaxation of RMP by use of both SoPlex and CPLEX as the LP-solver. The dual variable values in the solution of the RMP are past on to the subproblem for generating new columns.
+\subsubsection{Path-selection subproblem}
+
+\subsubsection{Cycle-selection subproblem}
+A cycle satisfying design-balance requirements consists of paths providing services $s\in \mathscr{S}$ by the same type of vehicle. Thus the objective of the cycle-selection subproblem is to find cycle-vehicle variables $y_{qv}$ with negative reduced cost which is given by:
+\begin{equation}\label{cost}
+f_{qv} - \sum_{p\in \mathscr{P}} M_{pq}t_{pv}\alpha_{cv} + \sum_{p\in \mathscr{P}} M_{pq}u_{pv}\gamma_{pv}
+\end{equation}
+
+We initialize the network with a subset of cycles to avoid constraints violation and ensure RMP being feasible. Each time we add a certain number of cycle-vehicle variables with least reduced cost to the RMP.
+
+\subsection{Local search}
+Since the application of SND employing heterogeneous fleets by logistics enterprises will deal with large scale of data, it is necessary to present efficient algorithms to find high-quality feasible solutions efficiently. To satisfy the need of solving large scale of instances, we propose a two-stage heuristics algorithm to find feasible solutions. 
+
+At each node on the searching tree, the column generation method will provide the value of $x_{ij}^k$ and $y_{ij}^f$. The arc subset $A_1$ includes arcs with nonzero flow on it. Another arc subset $A_2$ includes arcs with nonzero fleets on it. It is easy to find that $A_1\in A_2$ because of the capacity constraints. The values of $\sum_{(i,j)\in A_2}y_{ij}^f u_f$ decide the arc capacity $u_{ij}$ in $A_1$.
+\subsubsection{Stage 1: the capacitated multi-commodity minimum cost flow problem (CMCF)}
+Without considering the design-balance constraints, the capacitated multi-commodity minimum cost flow problem (CMCF) is obtained for given arc capacity. The solutions of the CMCF  determine the flow distribution of each commodity on each arc $(i,j)\in A_1$.
+\begin{equation}\label{CMCF_obj}
+  \min \sum_{(i,j)\in A_1}\sum_{k\in K} \bar{c}_{ij}^k x_{ij}^k
+\end{equation}
+\begin{equation}\label{CMCF_demand}
+  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k  \quad  \forall i\in N, \forall k\in K,
+\end{equation}
+\begin{equation}\label{CMCF_capacity}
+  \sum_{k\in K} x_{ij}^k \leq u_{ij}  \quad  \forall (i,j)\in A_1,
+\end{equation}
+\begin{equation}\label{CMCF_x}
+  x_{ij}^k \geq 0  \quad  \forall (i,j)\in A_1, \forall k\in K.
+\end{equation}
+After solving the CMCF and redistributing the flow on each arc, the arcs without flow are deleted from $A_1$.
+\subsubsection{Stage 2: Fleet assignment problem (FAP)}
+
+
+
+\section{Numerical experiments and analyses}
+
+
+\section{Conclusion}
+
+\section*{Acknowledgments}
+
+This work was supported by the National Natural Science Foundation of China
+\bibliographystyle{ormsv080} % outcomment this and next line in Case 1
+\bibliography{References} % if more than one, comma separated
+\end{document}
