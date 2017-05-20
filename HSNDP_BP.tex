@@ -7,7 +7,9 @@
 \usepackage{amssymb,amsmath}
 \usepackage{mathrsfs,threeparttable,lscape,subfigure,float,booktabs,enumerate,multirow,epstopdf,longtable}
 \usepackage{algorithm,algorithmic,xcolor}
-\usepackage{hyperref,color}
+%\usepackage{hyperref,color}
+%hyperlink colour set
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
 
 %\usetikzlibrary{shapes,snakes}
 %\newcommand{\USA}{\USAmap}
@@ -77,13 +79,68 @@ Ha ha \cite{lazic2010variable}
 \section{Literature review}
 
 \section{Model formulation}
+In this section, we introduce two kinds of model formulations to describe the problem. 
+
+\subsection{Arc-based formulation}
+A set of commodities $K$ represents different products that require to be transited from particular origin to destination terminals. Each commodity $k\in K$ requires a certain quantity demand $d_k$. The fixed cost of selecting and operating transportation service $(i,j)\in A$ by vehicle type $f\in F$ is denoted $h_{ij}^f$. The unit flow cost on each arc $(i,j)$ with respect to commodity $k\in K$ is denoted $c_{ij}^k$. The capacity of vehicle type $f$ is denoted by $u^f$. We define $N_i^+:\{j\in N:(i,j)\in A\},N_i^-:\{j\in N:(j,i)\in A\}$. For each commodity $k$ and node $i$, define
+\begin{equation*}
+\omega_i^k= \left\{
+\begin{aligned}
+d_k &  & if \quad i=o(k) \\
+-d_k &  & if \quad i=d(k) \\
+0 &  & otherwise
+\end{aligned}
+\right.
+\end{equation*}
+
+We define two sets of decision variables:
+\begin{itemize}
+  \item Continuous variables: $x_{ij}^k$ denotes the amount of commodity $k\in K$ that flows on arc $(i,j)\in A$;
+  \item Integer variables: $y_{ij}^f$ indicates the amount of fleet type $f\in F$ that provide services on arc $(i,j)\in A$.
+\end{itemize}
+
+The model is formulated as follows:
+\begin{align}
+  \min & \sum_{k\in K}\sum_{(i,j)\in A} c_{ij}^k x_{ij}^k + \sum_{f\in F}\sum_{(i,j)\in A}h_{ij}^f y_{ij}^f    \label{objA}  \\
+  \rm{s.t.} \nonumber  \\
+         &  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k     \quad     \forall i\in N, k\in K,     \label{demandA}  \\
+         &   \sum_{j\in N_i^+}y_{ij}^f - \sum_{j\in N_i^-}y_{ji}^f = 0  \quad     \forall i\in N, f\in F,   \label{dbA} \\
+         &   \sum_{k\in K}x_{ij}^k \leq \sum_{f\in F}u^f y_{ij}^f  \quad  \forall (i,j)\in A,   \label{capacityA} \\
+         &    x_{ij}^k \geq 0  \quad  \forall (i,j)\in A, k\in K,   \label{xA} \\
+         &   y_{ij}^f \in Z_0^+  \quad  \forall (i,j)\in A, f\in F, \label{yA}
+\end{align}
+
+% remain to modify
+The objective function (\ref{objA}) minimizes the total cost calculated as the sum of the flow costs on arcs plus the fixed costs for selecting and operating transportation service with respect to different types of vehicles. Constrains (\ref{demandA}) give the flow conversation relations for each commodity and each node. Equations (\ref{dbA}) are the design-balance constraints, which indicate that the total number of each type of vehicle entering a node equals the total number of each type of vehicle leaving that node. Through constrains (\ref{capacityA}), we enforce service capacity restrictions on each arc. Finally, Constrains (\ref{xA}) and (\ref{yA}) give variable-type restrictions.
+
+\subsection{Cycle-path formulation}
+Cycle-path based service network design formulation, presented in \cite{Andersen2011Branch} has been proved outperforming other form of formulation. We define heterogeneous vehicle design-cycle $q\in Q$ consisting of a sequence of paths $p\in P$ which transit commodities $k\in K$ by heterogeneous fleets. The fixed cost of cycle $q$ provided transportation services by vehicle type $f\in F$ is denoted $h_q^f$. The unit flow cost of path $p$ with respect to vehicle type $f\in F$ is denoted $c_p^k$.
+
+We define two sets of decision variables:
+\begin{itemize}
+  \item Cycle integer variables: $y_q^f$ denotes the amount of vehicles used by each cycle;
+  \item Path continuous variables: $x_p^k$ denotes the volume of specific commodity on path $p$ with respect to vehicle type $v$.
+\end{itemize}
+
+\begin{align}
+  \min &    \sum_{f\in F}\sum_{q\in Q^f}h_q^f y_q^f  +   \sum_{k\in K}\sum_{p\in P^k}c_p^k x_p^k  \label{objCP}    \\
+         & \rm{s.t.} \nonumber \\
+         &     \sum_{k\in K}\sum_{p\in P^k}\delta_{ij}^p x_p^k \leq  \sum_{f\in F}\sum_{q\in Q^f}u^f \alpha_{ij}^q y_q^f      \quad \forall (i,j)\in A \label{capacityCP}\\
+         &     \sum_{p\in P^k}x_p^k = \omega^k      \quad       \forall k\in K  \label{demandCP}    \\
+         &      x_p^k \geq 0        \quad       \forall p\in P^k,\forall k\in K     \label{xCP} \\
+         &      y_q^f \in Z_0^+     \quad       \forall q\in Q^f, \forall f\in F    \label{yCP}
+\end{align}
+
+The objective function (\ref{objCP}) minimizes the total cost calculated as the sum of the flow costs on paths plus the fixed costs for selected cycles with respect to specific type of vehicle.Through constrains (\ref{capacityCP}), we enforce service capacity restrictions on each arc. Constrains (\ref{demandCP}) ensure demand satisfaction corresponding to the flow conservation equations for each commodity.  Finally, Constrains (\ref{xCP}) and (\ref{yCP}) gives variable-type restrictions.
 
 \section{Solution method}
 Since the service network design problem is NP-hard, the exact algorithm is difficult to solve the large scale instances optimally. Heuristics and metaheuristics are the common choices in real-life application. But the drawback of heuristics algorithm is that the results cannot be evaluated by lower bound. Therefore we propose a branch-and-cut-and-price method combining the exact and the heuristics algorithm to solve the problem. The exact part mainly contains column generation and cutting plane method to obtain lower bound. The heuristic method uses local search and tabu search techniques to find feasible solutions at nodes on search tree.
+
 \subsection{Column generation}
 \cite{Andersen2011Branch} proposed a branch-and-price algorithm for service network design with asset management constrains. However heterogeneous vehicles are not taken into consideration in the literature. This paper aims to be devoted to filling the gap.
 %Introduction to column generation
 The linear relaxation of the formulation (\ref{obj})-(\ref{vary}) constitutes the master problem(MP) which is solved by the column generation approach. The number of variables in the MP is exponentially increasing thus it is necessary to concentrate on a restricted master problem(RMP) which contain only a subset of variables in the MP. We initialize the RMP with a limited set of cycle-path variables. To avoid demand constrains violation, the RMP includes path-vehicle flow decision variables entirely. The column generation approach generates columns dynamically until no additional column can be found. Solving the linear relaxation of the MP in the search tree leads to a branch-and-price(B\&P) algorithm.
+
 \subsubsection{Restricted master problem}
 The restricted master problem works on a subset of cycle-path variables: $\tilde{\mathscr{Q}}\subseteq \mathscr{Q}$ and $\tilde{\mathscr{V}}\subseteq \mathscr{V}$. For purpose of obtaining the linear relaxation, the integrality constraints (\ref{vary}) is replaced with (\ref{varyb}). Dual variables $\alpha_{cv}$, $\beta_c$, and $\gamma_{pv}$ are associated with constrains (\ref{con1}), (\ref{con2}), and (\ref{con3}) respectively.
 \begin{equation}\label{varyb}
@@ -95,6 +152,7 @@ To search for columns whose reduced cost is negative but are not included in the
 
 \subsubsection{Cycle-selection subproblem}
 A cycle satisfying design-balance requirements consists of paths providing services $s\in \mathscr{S}$ by the same type of vehicle. Thus the objective of the cycle-selection subproblem is to find cycle-vehicle variables $y_{qv}$ with negative reduced cost which is given by:
+
 \begin{equation}\label{cost}
 f_{qv} - \sum_{p\in \mathscr{P}} M_{pq}t_{pv}\alpha_{cv} + \sum_{p\in \mathscr{P}} M_{pq}u_{pv}\gamma_{pv}
 \end{equation}
@@ -102,30 +160,36 @@ f_{qv} - \sum_{p\in \mathscr{P}} M_{pq}t_{pv}\alpha_{cv} + \sum_{p\in \mathscr{P
 We initialize the network with a subset of cycles to avoid constraints violation and ensure RMP being feasible. Each time we add a certain number of cycle-vehicle variables with least reduced cost to the RMP.
 
 \subsection{Local search}
-Since the application of SND employing heterogeneous fleets by logistics enterprises will deal with large scale of data, it is necessary to present efficient algorithms to find high-quality feasible solutions efficiently. To satisfy the need of solving large scale of instances, we propose a two-stage heuristics algorithm to find feasible solutions. 
+Since the application of SND employing heterogeneous fleets by logistics enterprises will deal with large scale of data, it is necessary to present efficient algorithms to find high-quality feasible solutions efficiently. To satisfy the need of solving large scale of instances, we propose a two-stage heuristics algorithm to find feasible solutions.
 
-At each node on the searching tree, the column generation method will provide the value of $x_{ij}^k$ and $y_{ij}^f$. The arc subset $A_1$ includes arcs with nonzero flow on it. Another arc subset $A_2$ includes arcs with nonzero fleets on it. It is easy to find that $A_1\in A_2$ because of the capacity constraints. The values of $\sum_{(i,j)\in A_2}y_{ij}^f u_f$ decide the arc capacity $u_{ij}$ in $A_1$.
-\subsubsection{Stage 1: the capacitated multi-commodity minimum cost flow problem (CMCF)}
+At each node on the searching tree, the column generation method will provide the value of $x_{ij}^k$ and $y_{ij}^f$. The arc subset $A_1$ includes arcs with nonzero flow on it. Another arc subset $A_2$ includes arcs with nonzero fleets on it. It is easy to find that $A_1\subseteq A_2$ because of the capacity constraints. The values of $\sum_{(i,j)\in A_2}y_{ij}^f u_f$ decide the arc capacity $u_{ij}$ in $A_1$.
+
+\subsubsection{Stage 1: capacitated multi-commodity minimum cost flow problem (CMCF)}
 Without considering the design-balance constraints, the capacitated multi-commodity minimum cost flow problem (CMCF) is obtained for given arc capacity. The solutions of the CMCF  determine the flow distribution of each commodity on each arc $(i,j)\in A_1$.
-\begin{equation}\label{CMCF_obj}
-  \min \sum_{(i,j)\in A_1}\sum_{k\in K} \bar{c}_{ij}^k x_{ij}^k
-\end{equation}
-\begin{equation}\label{CMCF_demand}
-  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k  \quad  \forall i\in N, \forall k\in K,
-\end{equation}
-\begin{equation}\label{CMCF_capacity}
-  \sum_{k\in K} x_{ij}^k \leq u_{ij}  \quad  \forall (i,j)\in A_1,
-\end{equation}
-\begin{equation}\label{CMCF_x}
-  x_{ij}^k \geq 0  \quad  \forall (i,j)\in A_1, \forall k\in K.
-\end{equation}
-After solving the CMCF and redistributing the flow on each arc, the arcs without flow are deleted from $A_1$.
-\subsubsection{Stage 2: Fleet assignment problem (FAP)}
+\begin{align}
+   \min& \sum_{(i,j)\in A_1}\sum_{k\in K} \bar{c}_{ij}^k x_{ij}^k     \\
+   \rm{s.t.} & \nonumber \\
+         &  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k     \quad      \forall i\in N, \forall k\in K,  \\
+         &  \sum_{k\in K} x_{ij}^k \leq u_{ij}      \quad    \forall (i,j)\in A_1,  \\
+        &  x_{ij}^k \geq 0   \quad    \forall (i,j)\in A_1, \forall k\in K.
+\end{align}
+After solving the CMCF and redistributing the flow on each arc, the arcs without flow are removed from $A_1$.
 
+\subsubsection{Stage 2: fleet assignment problem (FAP)}
+After the flow distribution of origin-to-destination commodities has been completed, we need to assign heterogeneous fleets to provide transportation services. Let $\Omega_{ij}$ be the total flow of all commodities distributed on arc $(i,j) \in A_2$, which equals $\sum_{k\in K}\bar{x}_{ij}^k$. The mathematical formulation of Stage 2 defined on arc set $A_2$ is as follow:
+\begin{align}
+  \min & \sum_{f\in F}\sum_{(i,j)\in A_2} h_{ij}^f y_{ij}^f \\
+     & \sum_{j\in N_i^+}y_{ij}^f - \sum_{j\in N_i^-}y_{ji}^f = 0     \quad      \forall i\in N,\forall f\in F  \\
+     & \sum_{f\in F} u^f y_{ij}^f \geq \Omega_{ij}      \quad       \forall (i,j)\in A_2   \label{cap} \\
+     & y_{ij}^f \in Z_0^+       \quad       \forall (i,j)\in A_2, \forall f\in F
+\end{align}
+Constraints (\ref{cap}) ensure each service arc will provide sufficient vehicle capacity for the total flow.
 
+\subsubsection{Cycle-based neighborhoods}
+To improve the upper bound, we introduce cycle-based neighborhoods to search for better feasible solutions. The cycle-based neighborhoods was first proposed by Crainic to solve fixed-charge capacity multicommodity network design. 
 
 \section{Numerical experiments and analyses}
-
+The computation study is implemented in C++, using CPLEX 12.63 as the MIP-solver. All experiments are performed using a computer with four 64-bit 2.4 GHz Intel Core processors and 4 GB of RAM, running Window 10.
 
 \section{Conclusion}
 
