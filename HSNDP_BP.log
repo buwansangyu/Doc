@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.4)  20 MAY 2017 22:52
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.4)  21 MAY 2017 22:50
 entering extended mode
 **C:/Users/不晚桑榆/Documents/Latex/HSNDP_BP/HSNDP_BP.tex
 (C:/Users/不晚桑榆/Documents/Latex/HSNDP_BP/HSNDP_BP.tex
@@ -491,63 +491,27 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
- [2]
-
-LaTeX Warning: Reference `obj' on page 3 undefined on input line 142.
-
-
-LaTeX Warning: Reference `vary' on page 3 undefined on input line 142.
-
-[3]
-
-LaTeX Warning: Reference `vary' on page 4 undefined on input line 145.
-
-
-LaTeX Warning: Reference `vary' on page 4 undefined on input line 145.
-
-
-LaTeX Warning: Reference `con1' on page 4 undefined on input line 145.
-
-
-LaTeX Warning: Reference `con2' on page 4 undefined on input line 145.
-
-
-LaTeX Warning: Reference `con3' on page 4 undefined on input line 145.
-
-
-LaTeX Warning: Reference `vary' on page 4 undefined on input line 148.
-
-[4pdfTeX warning (ext4): destination with the same identifier (name{equation.4.
-12}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.162 \subsection
-                 {Local search}] [5]
-(C:\Users\不晚桑榆\Documents\Latex\HSNDP_BP\HSNDP_BP.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
+ [2] [3] [4] [5]
+[6] (C:\Users\不晚桑榆\Documents\Latex\HSNDP_BP\HSNDP_BP.bbl [7])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 220.
 
 (C:\Users\不晚桑榆\Documents\Latex\HSNDP_BP\HSNDP_BP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 220.
 Package rerunfilecheck Info: File `HSNDP_BP.out' has not changed.
-(rerunfilecheck)             Checksum: 956CDF85F48AE2326EE98E6AE1073BC8;1173.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
+(rerunfilecheck)             Checksum: 66B0387734180A83DCDEF97DC19A23E0;1389.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 220.
  ) 
 Here is how much of TeX's memory you used:
- 7498 strings out of 493921
- 105880 string characters out of 3147261
- 196596 words of memory out of 3000000
- 10603 multiletter control sequences out of 15000+200000
+ 7510 strings out of 493921
+ 106205 string characters out of 3147261
+ 196575 words of memory out of 3000000
+ 10605 multiletter control sequences out of 15000+200000
  15027 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,10n,35p,792b,351s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,35p,848b,461s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
@@ -564,9 +528,9 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/hoekwater/rsfs/rs
 fs10.pfb>
-Output written on HSNDP_BP.pdf (6 pages, 225485 bytes).
+Output written on HSNDP_BP.pdf (8 pages, 233889 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 48 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 252 PDF objects out of 1000 (max. 8388607)
+ 58 named destinations out of 1000 (max. 500000)
+ 153 words of extra memory for PDF output out of 10000 (max. 10000000)
 

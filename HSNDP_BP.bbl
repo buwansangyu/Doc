@@ -1,4 +1,4 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
@@ -15,6 +15,18 @@ Andersen, J., Christiansen M., Crainic T.~G., Nhaug R. 2011.
 \newblock Branch and price for service network design with asset management
   constraints.
 \newblock {\it Transportation Science\/} {\bf 45}(1) 33--49.
+
+\bibitem[{Chouman and Crainic(2015)}]{Chouman2015Cutting}
+Chouman, M., T.G. Crainic. 2015.
+\newblock Cutting-plane matheuristic for service network design with
+  design-balanced requirements.
+\newblock {\it Transportation Science\/} {\bf 49}(1) 99--113.
+
+\bibitem[{Kim et~al.(1999)Kim, C., K., and G.}]{Kim1999Multimodal}
+Kim, D., Barnhart C., Ware K., Reinhardt G. 1999.
+\newblock Multimodal express package delivery: A service network design
+  application.
+\newblock {\it Transportation Science\/} {\bf 33}(4) 391--407.
 
 \bibitem[{Lazi{\'c} et~al.(2010)Lazi{\'c}, Hanafi, Mladenovi{\'c}, and
   Uro{\v{s}}evi{\'c}}]{lazic2010variable}
