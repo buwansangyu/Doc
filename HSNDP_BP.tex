@@ -74,20 +74,18 @@ Service network design addresses decisions related to selecting transportation s
 
 \doublespace
 %\singlespace
-\section{Introduction}\label{Section_Intro}
+\section{Introduction}
 Freight transportation plays an increasingly important role because of rapid development of e-commerce. Carriers are facing tremendous pressure from growing competition and start to pay more attention to optimize their transportation network. Service network design (SND) formulations address issues related to the tactical planning for consolidation-based freight transportation systems. Specifically, such formulations make decisions on selecting transportation services and distributing origin-to-destination commodity flow.
 
 Network links represent services with operational assets (e.g. vehicles, drivers, power units, etc.) in SND formulations. Asset management concentrates on the operation and schedule of assets which attacks increasing attention in the literature \citep{Andersen2009bService,Andersen2011Branch}. The main goal of research on such issue is to acquire an efficient allocation and utilization of assets under the circumstance of satisfying the origin-to-destination demand.
 
-The models with asset management introduced in the literature only take single type of vehicles into consideration. 
+The models with asset management introduced in the literature only take single type of vehicles into consideration.
 
-It is more realistic to employ heterogeneous fleets in application to freight transportation system for carriers when providing transportation services. However, only a hand of effort has been dedicate to heterogeneous fleets. \cite{Kim1999Multimodal} and
+It is more realistic to employ heterogeneous fleets in application to freight transportation system for carriers when providing transportation services. However, only a hand of effort has been dedicate to heterogeneous fleets, e.g. \cite{Kim1999Multimodal} and \cite{Li2016Design}. Since service network design problem is NP-hard, it is difficult to find a feasible solution of large-scale instance. However, in real-life application, carriers are confronted with huge transportation network and need efficient algorithms to reduce costs.
 
-Our goal of this paper is to address this issues and propose a cycle-path based formulation \citep{Andersen2009bService} which considers heterogeneous vehicles and time requirements. The difference is the assumption that all cycles and paths have been generated such that we concentrate on the selection of cycles. A branch-and-price (B\&P) algorithm is presented to handle our formulation and compare the computational results with SoPlex and CPLEX.
+Our goal of this paper is to address this issue about heterogeneous fleets and propose two kinds of formulations. And a hybrid algorithm combining both exact and heuristics techniques is introduced to obtain high-quality feasible solutions in a short time. Meanwhile, the algorithm provide lower bounds on each instance to show how far the solution is away from the optimal value.
 
-The rest of our paper is organized as follows. In Section 2, a brief literature review is elaborated. We describe the problem and propose the mathematical formulation in Section 3. Section 4 is devoted to the proposed branch-and-price algorithm, whereas computational results is presented in Section 5. Conclusions and future work is given in Section 6.
-%Motivation
-
+The outline of this paper is as follows. In Section 2, a brief literature review is elaborated. We describe the problem and propose both arc-based and cycle-path formulations in Section 3. Section 4 is devoted to the proposed hybrid algorithm, whereas experimental results is presented in Section 5. Concluding remarks is given in Section 6.
 
 \section{Literature review}
 Service network design(SND) contains the service planning decisions on selecting the transit services and modes to transport commodities which is frequently formulated as fixed-cost capacitated multicommodity network design problems (CMND), see \cite{Magnanti1984Network}, \cite{Minoux1989Networks}. In addition to scheduling of services and planning flows of commodities, the management of asset is marginally considered in \cite{Crainic2000Service}, \cite{Smilowitz2002Deferred} and \cite{crainic2003long}. Afterwards design-balanced constrains proposed by \cite{Pedersen2009Models} requires the amount of assets entering each terminal equals the amount of leaving. Such formulations reflect more realistic satisfaction of transportation planning and services and are denoted as an NP-hard problem, namely design-balanced capacitated multicommodity network design (DBCMND) problems.
@@ -96,9 +94,9 @@ With respect to variables in SND formulation, it is general to employ arc-based 
 
 Due to the large scale of instances, heuristic and metaheuristic methods are a preferred choice when solving SND. \cite{Teypaz2010A} employ a decomposition scheme to solve large-scale freight transportation formulation and show that their proposed algorithms offer the best time/quality trade-off. \cite{VuDucToulouse} present a three-phase matheuristic combining neighbourhood-based and exact methods for the DBCMND. Additionally, their experiments on benchmarks indicate the efficiency of their algorithm solving large-scale problems. Another matheuristic combining a cutting-plane scheme and a variable-fixing scheme to cut down the dimension of the problem is introduced in \cite{Chouman2015Cutting}.
 
-The contributions of our paper are twofold: First, we present a cycle-path based formulation for service network design with heterogeneous vehicles. Second, the implementation of a B\&P algorithm is presented which outperforms SoPlex and CPLEX over computational time and finding dual bounds.
+The contributions of our paper are twofold: First, we present both arc-based and cycle-path formulations for service network design considering heterogeneous fleets. Second, a hybrid algorithm including column generation, cutting plane and local search methods is introduced. Moreover, the proposed algorithm provides high-quality both lower bounds and feasible solutions for large-scale instances efficiently.
 
-\section{Model formulation}
+\section{Problem statement and model formulation}
 In this section, we introduce two kinds of model formulations to describe the problem.
 
 \subsection{Arc-based formulation}
