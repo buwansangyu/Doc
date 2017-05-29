@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  28 MAY 2017 22:57
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  29 MAY 2017 22:40
 entering extended mode
 **C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
 (C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
@@ -479,7 +479,7 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 56.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (1.55197pt too wide) in paragraph at lines 78--79
+Overfull \hbox (1.55197pt too wide) in paragraph at lines 78--81
 \OT1/cmr/m/n/10.95 Freight trans-porta-tion plays an in-creas-ingly im-por-tant
  role be-cause of rapid de-vel-op-ment of e-commerce.
  []
@@ -488,42 +488,59 @@ Overfull \hbox (1.55197pt too wide) in paragraph at lines 78--79
 
 
 
-{C:/Users/Wang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 116.
+{C:/Users/Wang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Missing character: There is no Ô in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no Å in font cmr10!
+ [2]
+[3] <F1.png, id=156, 405.6756pt x 295.8252pt>
+File: F1.png Graphic file (type png)
+ <use F1.png>
+Package pdftex.def Info: F1.png used on input line 113.
+(pdftex.def)             Requested size: 271.0125pt x 197.63309pt.
+
+<F2.png, id=157, 379.6584pt x 307.8702pt>
+File: F2.png Graphic file (type png)
+ <use F2.png>
+Package pdftex.def Info: F2.png used on input line 122.
+(pdftex.def)             Requested size: 271.0125pt x 219.76378pt.
+ [4 <C:/Users/Wang/Documents/Latex/HFSND/F1.png> <C:/Users/Wang/Documents/Latex
+/HFSND/F2.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 145.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
- [3] [4] [5] [6]
-[7] [8] (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.bbl [9]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
+ [5] [6] [7] [8]
+[9] [10] (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.bbl [11]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ì in font cmr10!
 Missing character: There is no √ in font cmr10!
 Missing character: There is no º in font cmr10!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 238.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 267.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 267.
 
 (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 267.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 267.
 Package rerunfilecheck Info: File `HSNDP_BP.out' has not changed.
-(rerunfilecheck)             Checksum: 9AA8D5553983B178DE0268922C30B472;1411.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 238.
+(rerunfilecheck)             Checksum: 49D49C54B783CCCB5D018613220A7F13;1481.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 267.
  ) 
 Here is how much of TeX's memory you used:
- 7535 strings out of 493921
- 107143 string characters out of 3147285
- 198955 words of memory out of 3000000
- 10621 multiletter control sequences out of 15000+200000
+ 7558 strings out of 493921
+ 107351 string characters out of 3147285
+ 199125 words of memory out of 3000000
+ 10636 multiletter control sequences out of 15000+200000
  12833 words of font info for 50 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,12n,35p,959b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,35p,1308b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
@@ -540,9 +557,9 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/hoekwater/rsfs/rs
 fs10.pfb>
-Output written on HSNDP_BP.pdf (10 pages, 250935 bytes).
+Output written on HSNDP_BP.pdf (12 pages, 309904 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 70 named destinations out of 1000 (max. 500000)
- 153 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 75 named destinations out of 1000 (max. 500000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 

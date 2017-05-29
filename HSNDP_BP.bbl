@@ -16,13 +16,6 @@ Andersen, J., Christiansen M., Crainic T.~G., Nhaug R. 2011.
   constraints.
 \newblock {\it Transportation Science\/} {\bf 45}(1) 33--49.
 
-\bibitem[{Andersen et~al.(2009a)Andersen, T.G., and M.}]{Andersen2009aService}
-Andersen, J., Crainic T.G., Christiansen M. 2009a.
-\newblock Service network design with management and coordination of multiple
-  fleets.
-\newblock {\it European Journal of Operational Research\/} {\bf 193}(2)
-  377--389.
-
 \bibitem[{Andersen et~al.(2009b)Andersen, T.G., and M.}]{Andersen2009bService}
 Andersen, J., Crainic T.G., Christiansen M. 2009b.
 \newblock Service network design with asset management: Formulations and
@@ -35,6 +28,12 @@ Chouman, M., T.G. Crainic. 2015.
 \newblock Cutting-plane matheuristic for service network design with
   design-balanced requirements.
 \newblock {\it Transportation Science\/} {\bf 49}(1) 99--113.
+
+\bibitem[{Crainic et~al.(2016)Crainic, Hewitt, Toulouse, and
+  Vu}]{Crainic2016Service}
+Crainic, Teodor~Gabriel, Mike Hewitt, Michel Toulouse, Duc~Minh Vu. 2016.
+\newblock Service network design with resource constraints.
+\newblock {\it Transportation Science\/} {\bf 50}(4).
 
 \bibitem[{Crainic(2000)}]{Crainic2000Service}
 Crainic, T.G. 2000.
