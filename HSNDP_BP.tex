@@ -6,9 +6,11 @@
 \usepackage{graphicx}
 \usepackage{amssymb,amsmath}
 \usepackage{mathrsfs,threeparttable,lscape,subfigure,float,booktabs,enumerate,multirow,epstopdf,longtable}
-\usepackage{algorithm,algorithmic,xcolor}
+%\usepackage{algorithm}
+\usepackage{algorithmic,xcolor}
+\usepackage[linesnumbered,boxed,ruled]{algorithm2e}
 %\usepackage{hyperref,color}
-%hyperlink colour set
+%hyperlink colour setting
 \usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
 
 %\usetikzlibrary{shapes,snakes}
@@ -40,7 +42,7 @@
 \singlespace
 
 \begin{titlepage}
-\title{A branch-and-cut-and-price algorithm for large-scale service network design considering heterogeneous fleets and service capacity decision}
+\title{A hybrid algorithm for large-scale service network design considering heterogeneous fleets and service capacity decision}
 \author{
 	Zujian Wang \\
 	\small{Department of Industrial Engineering} \\
@@ -57,12 +59,12 @@
 %\newpage
 
 \abstract{
-Service network design addresses decisions related to selecting transportation services and distributing origin-to-destination commodity flow. In this paper, we consider the usage of heterogeneous fleets to provide transportation services. The amounts of fleets employed by each service decide its capacity. We propose both arc-based and cycle-path based models to formulate the problem.  A branch-and-cut-and-price algorithm is presented to solve the problem. The method includes pricing and cutting techniques, as well as a local search algorithm to obtain upper bound. The computation study indicates the efficiency of the proposed algorithm.
+Service network design addresses decisions related to selecting transportation services and distributing origin-to-destination commodity flow. In this paper, we consider the usage of heterogeneous fleets to provide transportation services. The amounts of fleets employed by each service decide its capacity. We propose both arc-based and cycle-path based models to formulate the problem.  A hybrid algorithm is presented to solve the problem. The method includes pricing and cutting techniques, as well as a local search algorithm to obtain upper bound. The computation study indicates the efficiency of the proposed algorithm.
 }
 
 \vspace{.25in}
 
-\noindent {\bf Keywords:} a heterogeneous fleet; column generation;
+\noindent {\bf Keywords:} heterogeneous fleet; column generation; cutting plane; local search
 
 
 
@@ -95,60 +97,48 @@ With respect to the way to formulate SND, it is general to introduce arc-based f
 
 Since the SND problem is NP-hard, heuristic methods are preferred choices with respect to the large scale of instances. \cite{Pedersen2009Models} present a two-phase tabu search meta-heuristic framework for the arc-based formulation. The proposed algorithm includes exploration phase to build neighborhoods and feasibility phase to implement an infeasibility-monitoring procedure for reaching good feasible solutions. \cite{Teypaz2010A} present a three-step decomposition heuristic to solve large-scale freight transportation formulation and build comprehensive solutions for real-life size instances. \cite{VuDucToulouse} propose a three-phase meta-heuristic method combining neighbourhood-based and exact methods. Additionally, computational results on large-scale benchmark instances indicate the efficiency of the algorithm. Another meta-heuristic combining a cutting-plane scheme to obtain lower bound and a variable ﬁxing procedure to cut down the dimension of the problem is introduced in \cite{Chouman2015Cutting}. \cite{Crainic2016Service} propose a new service network design model with resource constraints and design a solution approach combining column generation and slope scaling methods to find high-quality solutions.
 
-A single asset type is considered in the aforementioned literature. As for heterogeneous assets, especially multiple types of vehicles, \cite{Kim1999Multimodal} introduce three different formulations and two sets of valid inequalities. However, no efficient algorithm is mentioned to solve those formulations in that paper. \cite{Li2016Design} propose a tabu search based meta-heuristic to solve arc-based formulation for design-balanced capacitated multicommodity network design with heterogeneous vehicles. The amounts of each type of vehicle used by each service are not decided explicitly in their paper.
+A single asset type is considered in the aforementioned literature. As for heterogeneous assets, especially multiple types of vehicles, \cite{Kim1999Multimodal} introduce three different formulations and two sets of valid inequalities. However, no efficient algorithm is mentioned to solve those formulations in that paper. \cite{Li2016Design} propose a tabu search based meta-heuristic to solve arc-based formulation for design-balanced capacitated multicommodity network design with heterogeneous vehicles. The amounts of each type of vehicle used by each service are not decided explicitly in their paper. And the experimental instances solved by the proposed algorithm cannot satisfy the real-life demand.
 
 Our research makes the following contributions to the literature: First, we present both arc-based and cycle-path formulations for service network design considering heterogeneous fleets. Second, a hybrid algorithm including column generation, cutting plane and local search methods is introduced. Moreover, the proposed algorithm provides high-quality both lower bounds and feasible solutions for large-scale instances efficiently.
 
 \section{Problem statement and model formulation}
-In this section, we introduce two kinds of model formulations to describe the problem.
+In this section, we describe the problem mathematically and propose two equivalent formulations based on arc and cycle-path respectively. 
 
 \subsection{Problem description}
-Transportation carriers need a sufficient system to support their tactical planning. They tend to employ heterogeneous fleet to increase the loading rate under the condition of satisfying the time requirements of each commodity. Under the assumption of known demand at each terminal, they need to schedule the heterogeneous fleet including the routing terminals, the arriving and departure time at each terminal.
-
-To solve the problem, we work with cyclic time-space network $\mathscr{G}=(\mathscr{N},\mathscr{A})$ which is shown in Fig. \ref{Fig1}. The schedule length is the length of time (e.g. a week) during which the scheduling pattern is employed. We assume the schedule length is divided into $\mathscr{T}=\{1,2,...,TMAX\}$ time periods. Physical terminals at different time period is formulated as different nodes in time-space network. Therefore, the set of nodes denoted by $\mathscr{N}$ is defined as $\mathscr{N}=\mathscr{T}\times \mathscr{P}$, where $\mathscr{P}$ represents the set of physical terminals.
-\begin{figure}[H]
-\setlength{\abovecaptionskip}{-5pt}
-\setlength{\belowcaptionskip}{-5pt}
-\centering
-\includegraphics[width=0.5\linewidth]{F1.png}
-\caption{\small Time-space diagram for cyclic transportation service schedule}
-\label{Fig1}
-\end{figure}
+Since most literature assume homogeneous fleet is employed which may not accord with the common practices, we take heterogeneous fleet into consideration in this paper. The example network with heterogeneous fleet operating is shown in Fig.\ref{Fig2}. Under this assumption, the amount of different type of vehicles should be decided on each arc. In Fig.\ref{Fig2}, there two types of fleet providing services and arcs in solid line are labeled by the amount of specific type of vehicles. At each node the numbers of same type of vehicle entering and leaving equals. A cycle consists of a sequence of arcs satisfying design-balance requirements of each type of vehicle, i.e., $\{ (A,B),(B,C),(C,A) \}$. A path starts at the origin of a commodity and end at its destination to satisfy the demand. Suppose there is a commodity with origin $A$ and destination $G$, thus $\{ (A,D),(D,G) \}$ and $\{ (A,D),(D,F),(F,G) \}$ are two paths.
 
 \begin{figure}[H]
 \setlength{\abovecaptionskip}{-5pt}
 \setlength{\belowcaptionskip}{-5pt}
 \centering
 \includegraphics[width=0.5\linewidth]{F2.png}
-\caption{\small Time-space network with heterogeneous fleet operating}
+\caption{\small Example of heterogeneous fleet}
 \label{Fig2}
 \end{figure}
 
-In our problem setting there are two types of arcs in the set $\mathscr{A}$. The first is the horizontal lines between nodes called holding arcs, which represent vehicles and commodities wait at the same terminal. The second is the service arcs representing the operation of a transportation service between two different terminals at a specific time period. We denote the set of the holding arcs by $\mathscr{H}$ and the service arcs by $\mathscr{S}$, thus we have $\mathscr{A}=\mathscr{H}\cup \mathscr{S}$.
-
-One of the feature of our formulation is taking heterogeneous fleet into into consideration. The time-space network with heterogeneous fleet operating is shown in Fig. \ref{Fig2}. Under this assumption, the amount of different type of vehicles should be figured out on each arc. In Fig. \ref{Fig2} the number besides each arc denotes the number of particular type of vehicles. At each node in the set of $\mathscr{N}$ the numbers of same type of vehicle entering and leaving equals. The set of fleet type is denoted by $\mathscr{F}$.
+Given a directed graph $G=(N,A)$ with node set $N$ and arc set $A$. Each commodity $k$ in commodity set $K$ has a known demand $d^k$ to be transited from its origin node $o(k)$ to destination node $d(k)$. Let $F$ denote the set of fleet types and each type $f\in F$ has a certain capacity $u^f$.
 
 \subsection{Arc-based formulation}
-A set of commodities $K$ represents different products that require to be transited from particular origin to destination terminals. Each commodity $k\in K$ requires a certain quantity demand $d_k$. The fixed cost of selecting and operating transportation service $(i,j)\in A$ by vehicle type $f\in F$ is denoted $h_{ij}^f$. The unit flow cost on each arc $(i,j)$ with respect to commodity $k\in K$ is denoted $c_{ij}^k$. The capacity of vehicle type $f$ is denoted by $u^f$. We define $N_i^+:\{j\in N:(i,j)\in A\},N_i^-:\{j\in N:(j,i)\in A\}$. For each commodity $k$ and node $i$, define
+Let  $h_{ij}^f$ denote the fixed cost of utilizing fleet type $f\in F$ with respect to arc $(i,j)$. The unit flow cost for transporting commodity $k\in K$ on arc $(i,j)$ is denoted $c_{ij}^k$. The capacity of fleet type $f$ is denoted by $u^f$. We define $N_i^+:\{j\in N:(i,j)\in A\},N_i^-:\{j\in N:(j,i)\in A\}$. For each commodity $k$ and node $i$, define
 \begin{equation*}
 \omega_i^k= \left\{
 \begin{aligned}
-d_k &  & if \quad i=o(k) \\
--d_k &  & if \quad i=d(k) \\
-0 &  & otherwise
+d^k&  & if \ i=o(k) \\
+-d^k&  & if \ i=d(k) \\
+0&  & otherwise
 \end{aligned}
 \right.
 \end{equation*}
 
-We define two sets of decision variables:
+Two sets of decision variables are defined as follows.
 \begin{itemize}
-  \item Continuous variable: $x_{ij}^k$ denotes the amount of commodity $k\in K$ that flows on arc $(i,j)\in A$;
-  \item Integer variable: $y_{ij}^f$ indicates the amount of fleet type $f\in F$ that provide services on arc $(i,j)\in A$.
+  \item Continuous variable: $x_{ij}^k$ represents the amount of flow with respect to commodity $k\in K$ on arc $(i,j)\in A$;
+  \item Integer variable: $y_{ij}^f$ denotes the amount of fleet type $f\in F$ that provide transportation services on arc $(i,j)\in A$.
 \end{itemize}
 
 The model is formulated as follows:
 \begin{align}
-  \min & \sum_{k\in K}\sum_{(i,j)\in A} c_{ij}^k x_{ij}^k + \sum_{f\in F}\sum_{(i,j)\in A}h_{ij}^f y_{ij}^f    \label{objA}  \\
+  \min &  \sum_{f\in F}\sum_{(i,j)\in A}h_{ij}^f y_{ij}^f + \sum_{k\in K}\sum_{(i,j)\in A} c_{ij}^k x_{ij}^k   \label{objA}  \\
   \rm{s.t.} \nonumber  \\
          &  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k     \quad     \forall i\in N, \forall k\in K,     \label{demandA}  \\
          &   \sum_{j\in N_i^+}y_{ij}^f - \sum_{j\in N_i^-}y_{ji}^f = 0  \quad     \forall i\in N, \forall f\in F,   \label{dbA} \\
@@ -157,17 +147,21 @@ The model is formulated as follows:
          &   y_{ij}^f \in Z_0^+  \quad  \forall (i,j)\in A,\forall f\in F, \label{yA}
 \end{align}
 
-% remain to modify
-The objective function (\ref{objA}) minimizes the total cost calculated as the sum of the flow costs on arcs plus the fixed costs for selecting and operating transportation service with respect to different types of vehicles. Constrains (\ref{demandA}) give the flow conversation relations for each commodity and each node. Equations (\ref{dbA}) are the design-balance constraints, which indicate that the total number of each type of vehicle entering a node equals the total number of each type of vehicle leaving that node. Through constrains (\ref{capacityA}), we enforce service capacity restrictions on each arc. Finally, Constrains (\ref{xA}) and (\ref{yA}) give variable-type restrictions.
+The objective function (\ref{objA}) minimizes the sum of the fixed costs for selecting and operating transportation service with respect to heterogeneous fleet and the total commodity flow costs. Constrains (\ref{demandA}) represent the flow conversation relations for each node and each commodity. Equations (\ref{dbA}) are the design-balance constraints, which ensure the same number of each type of vehicle entering and leaving a node. Through constrains (\ref{capacityA}), we enforce the total flow cannot exceed the total capacity provided by all vehicles on each arc. Finally, variable-type restrictions appear in constrains (\ref{xA}) and (\ref{yA}).
 
 \subsection{Cycle-path formulation}
-Cycle-path based service network design formulation, presented in \cite{Andersen2011Branch} has been proved outperforming other form of formulation. We define heterogeneous vehicle design-cycle $q\in Q^f$ consisting of a sequence of paths $p\in P^k$ which transit commodities $k\in K$ by heterogeneous fleets $f\in F$. The fixed cost of cycle $q$ provided transportation services by vehicle type $f\in F$ is denoted $h_q^f$. The unit flow cost of path $p$ with respect to vehicle type $f\in F$ is denoted $c_p^k$.
-
-We define two sets of decision variables:
+Let $Q^f$ represent the set of all design cycle with respect to fleet type $f\in F$. And we define the set of all paths with respect to commodity $k$ as $P^k$. Two sets of decision variables are given as follows.
 \begin{itemize}
   \item Cycle integer variables: $y_q^f$ denotes the amount of vehicles used by each cycle;
-  \item Path continuous variables: $x_p^k$ denotes the volume of specific commodity on path $p$ with respect to vehicle type $v$.
+  \item Path continuous variables: $x_p^k$ denotes the volume of commodity $k$ on path $p$.
 \end{itemize}
+We define two set of indicator variables:
+\begin{itemize}
+  \item $\alpha_{ij}^q$: equals 1 if arc $(i,j)$ is included in cycle $q$, and 0 otherwise;
+  \item $\delta_{ij}^p$: equals 1 if arc $(i,j)$ is included in path $p$, and 0 otherwise.
+\end{itemize}
+
+The fixed cost of cycle $q$ with respect to fleet type $f\in F$ is denoted $h_q^f$, which equals $\sum_{(i,j)\in A} h_{ij}^f \alpha_{ij}^q$. Similarly, the flow cost of path $p$ with respect to commodity $k\in K$ is denoted $c_p^k$, which equals $\sum_{(i,j)\in A} c_{ij}^k \delta_{ij}^p$.
 
 \begin{align}
   \min &    \sum_{f\in F}\sum_{q\in Q^f}h_q^f y_q^f  +   \sum_{k\in K}\sum_{p\in P^k}c_p^k x_p^k  \label{objCP}    \\
@@ -178,70 +172,112 @@ We define two sets of decision variables:
          &      y_q^f \in Z_0^+     \quad       \forall q\in Q^f, \forall f\in F    \label{yCP}
 \end{align}
 
-The objective function (\ref{objCP}) minimizes the total cost calculated as the sum of the flow costs on paths plus the fixed costs for selected cycles with respect to specific type of vehicle.Through constrains (\ref{capacityCP}), we enforce service capacity restrictions on each arc. Constrains (\ref{demandCP}) ensure demand satisfaction corresponding to the flow conservation equations for each commodity.  Finally, Constrains (\ref{xCP}) and (\ref{yCP}) gives variable-type restrictions.
+The objective function (\ref{objCP}) minimizes the total cost calculated as the sum of the flow costs on paths plus the fixed costs for selected cycles with respect to specific type of vehicle.Through constrains (\ref{capacityCP}), we enforce service capacity restrictions on each arc. Constrains (\ref{demandCP}) ensure demand satisfaction corresponding to the flow conservation equations for each commodity. Finally, Constrains (\ref{xCP}) and (\ref{yCP}) gives variable-type restrictions.
 
 \section{Solution method}
-Since the service network design problem is NP-hard, the exact algorithm is difficult to solve the large scale instances optimally. Heuristics and metaheuristics are the common choices in real-life application. But the drawback of heuristics algorithm is that the results cannot be evaluated by lower bound. Therefore we propose a branch-and-cut-and-price method combining the exact and the heuristics algorithm to solve the problem. The exact part mainly contains column generation and cutting plane method to obtain lower bound. The heuristic method uses local search and tabu search techniques to find feasible solutions at nodes on search tree.
+Since the service network design problem is NP-hard, the exact algorithm is difficult to solve the large-scale instances optimally. Heuristics and metaheuristics are the common choices in real-life application. But the drawback of heuristics algorithm is that the results cannot be evaluated by lower bound. Therefore we propose a hybrid method combining the exact and the heuristics algorithm to solve the problem. The exact part mainly contains column generation and cutting plane method to obtain lower bound. We consider the linear solution provided by column-and-cut generation approach as a good neighborhood and use local search techniques to find better feasible solutions.
 
-\subsection{Column generation}
-\cite{Andersen2011Branch} proposed a branch-and-price algorithm for service network design with asset management constrains. However heterogeneous fleets are not taken into consideration in the literature. This paper aims to be devoted to filling the gap.The linear relaxation of the cycle-path formulation constitutes the master problem(MP) which is solved by the column generation approach. The number of variables in the MP is exponentially increasing thus it is necessary to concentrate on a restricted master problem(RMP) which contain only a subset of variables in the MP. The column generation approach generates columns dynamically until no additional column can be found.
+\vspace{.15in}
+\begin{algorithm}[H] \label{Methodology}
+\caption{Solution method}
+\LinesNumbered
+\SetNlSkip{1.2em}
+\While{find columns or cuts}
+{
+    column generation\;
+    cutting plane\;
+}
+return lower bound\;
+use the lower bound as initial neighborhood\;
+local search procedure\;
+return upper bound\;
+\end{algorithm}
+\subsection{Column-and-cut generation}
+The column generation approach has been proved to be efficient to solve cycle-path formulation by \cite{Andersen2011Branch}. With respect to cutting-plane procedure, it is also proved to be effective in calculating tight lower bounds for CMND-related problems, see \cite{Chouman2009Commodity,Chouman2011Commodity,Chouman2015Cutting}. We combine the methods to strength the lower bound for the proposed formulations.
 
-\subsubsection{Restricted master problem}
-The restricted master problem(RMP) works on subsets of cycles and paths. Dual variables $\eta_{ij}$ and $\omega_k$ are associated with constrains (\ref{capacityCP}) and (\ref{demandCP}) respectively.To search for columns whose reduced cost is negative but are not included in the RMP, we solve the linear relaxation of RMP by use CPLEX as the LP-solver. The dual variable values in the solution of the RMP are past on to the subproblem for generating new columns. We initialize the RMP with a limited set of cycle-path variables. To avoid demand constraints violation, the RMP includes path-vehicle flow decision variables entirely.
-\subsubsection{Cycle subproblem}
-A cycle satisfying design-balance requirements consists of paths providing services $s\in \mathscr{S}$ by the same type of vehicle. Thus the objective of the cycle-selection subproblem is to find cycle-vehicle variables $y_{qv}$ with negative reduced cost which is given by:
+\subsubsection{Column generation (CG)}
+The linear relaxation of the cycle-path formulation constitutes the master problem(MP) which is solved by the CG approach. Since the number of variables in the MP is exponentially increasing, it is necessary to concentrate on a restricted master problem(RMP) which contains only a subset of variables(columns) in the MP.  The CG approach starts with some necessary cycles and paths to prevent the constraints violation. We generate one path for each commodity to ensure its O-D demand. A reversed path from the destination of each commodity to its origin is combined with the former path to constitute a cycle. Therefore, we add a path and a cycle for each commodity as the initial columns to ensure the RMP feasible. The method adds new paths and cycles dynamically to the RMP until no additional column with negative reduced cost can be found.
+
+The dual variable values in the solution of the RMP are past on to the subproblem for generating new columns. Dual variables $\eta_{ij}$ and $\sigma_k$ are associated with constrains (\ref{capacityCP}) and (\ref{demandCP}) respectively. The reduced cost associated with cycle-related variable $y_q^f$ and path-related variable $x_p^k$ is given by:
 \begin{align}
-RC_{fq} = h_q^f + \sum_{(i,j)\in A} u^f \alpha_{ij}^q \eta_{ij} = \sum_{(i,j)\in q} (h_{ij}^f + u^f \eta_{ij})
+& RC_{fq} = h_q^f + \sum_{(i,j)\in A} u^f \alpha_{ij}^q \eta_{ij} = \sum_{(i,j)\in q} (h_{ij}^f + u^f \eta_{ij}) \\
+& RP_{kp} = c_p^k - \sum_{(i,j)\in A} \delta_{ij}^p \eta_{ij} - \sigma_k = \sum_{(i,j)\in p} (c_{ij}^k - \eta_{ij}) - \sigma_k
 \end{align}
 
-We initialize the network with a subset of cycles to avoid constraints violation and ensure RMP being feasible. Each time we add a certain number of cycle-vehicle variables with least reduced cost to the RMP.
+We search for cycles and paths with negative reduced cost and add them to the RMP. The column generation procedure is presented in \ref{CG}. When searching for the shortest cycle, we add a virtual node which is as same as the starting node as the destination node. Such that we can use the shortest path algorithm to find the shortest cycle. Note that dual variable $\eta_{ij} \leq 0$, then the arc costs may be negative when searching for the shortest cycle. Therefore, we employ the label-correcting algorithm implemented by \cite{Ahuja1993Network} to identify the shortest path.
 
-\subsubsection{Path subproblem}
+\vspace{.25in}
+\begin{algorithm}[H] \label{CG}
+%\SetAlgoNoLine
+\caption{Column generation procedure}
+\LinesNumbered
+\SetNlSkip{1.2em}
+add initial sets of cycles and paths to the RMP\;
+\While{find columns with negative reduced cost}
+{
+    solve the RMP\;
+    determine dual variables $\eta_{ij}$ and $\sigma_k$\;
+    \ForEach{node}
+    {
+        find the shortest cycle with respect to arc costs $h_{ij}^f + u^f \eta_{ij}$\;
+        let $\theta_q$ denote the cost of the shortest cycle\;
+        \If{$\theta_q < 0$}
+        {
+            add the corresponding cycle to the RMP\;
+        }
+    }
+     \ForEach{commodity}
+    {
+        find the shortest path with respect to arc costs $c_{ij}^k - \eta_{ij}$\;
+        let $\theta_p$ denote the cost of the shortest path\;
+        \If{$\theta_p - \sigma_k < 0$}
+        {
+            add the corresponding path to the RMP\;
+        }
+    }
+}
+%\KwOut{best feasible solution}
+\end{algorithm}
 
-\begin{align}
-RP_{kp} = c_p^k - \sum_{(i,j)\in A} \delta_{ij}^p \eta_{ij} - \sigma_k = \sum_{(i,j)\in p} (c_{ij}^k - \eta_{ij}) - \sigma_k
-\end{align}
-
-\subsection{Cutting plane}
-The generation of valid inequalities can help strength the lower bound obtained by column generation. We introduce two sets of valid inequalities including strong inequalities and cutset inequalities.
-
-\subsubsection{Strong inequalities(SI)}
-SI have been widely used to improve the quality of the LP lower bound. SI added to the model in our paper are defined as
-\begin{align}
+\subsubsection{Cutting plane}
+The cutting plane procedure employs the generation of valid inequalities to strengthen the lower bound in relatively short time comparing with state-of-the-art software. We introduce two sets of valid inequalities including strong inequalities and cutset inequalities. Strong inequalities(SI) have been widely used to improve the quality of the LP lower bound, see \cite{Gendron1994RELAXATIONS,Gendron1999Multicommodity} and \cite{Chouman2015Cutting}. We extend SI to be suitable for the proposed formulations in our paper which are defined in inequalities (\ref{SI}). The main effects of SI is to restrict the flow of every commodity on an arc with no fleet to be 0.
+\begin{align}\label{SI}
   x_{ij}^k \leq d^k \sum_{f\in F} y_{ij}^f      \quad       \forall (i,j)\in A, \forall k\in K.
 \end{align}
 
-\subsubsection{Cutset inequalities(CI)}
-CI have been used by \cite{Chouman2015Cutting} to strength the lower bound. As for heterogeneous fleet, the CI have been presented by \cite{Kim1999Multimodal} which are defined as
+Cutset inequalities(CI) have been used by \cite{Chouman2015Cutting} to strengthen the lower bound for the DBCMND. As for the circumstance of considering heterogeneous fleet, CI have been presented by \cite{Kim1999Multimodal} which are defined as
 \begin{align}
     \sum_{f\in F}u^f Y_{S,\bar{S}}^f \geq  D_{S,\bar{S}}
 \end{align}
 
-where we define cutset $(S,\bar{S})$ by partitioning the node set $N$ into any nonempty subset $S$ and its complement $\bar{S}=N\backslash S$. An arc $(i,j)$ that connects node $i$ in $S$ to node $j$ in $\bar{S}$  belongs to the cutset $(S,\bar{S})$. Let $Y_{S,\bar{S}}^f$ denote the total amount of type $f$ vehicles used on the cutset $(S,\bar{S})$ arcs, i.e., $\sum_{(i,j)\in (S,\bar{S})} y_{ij}^f$ for the arc-based formulation and $\sum_{q\in Q^f}\sum_{(i,j)\in (S,\bar{S})} \alpha_{ij}^q y_q^f $ for the cycle-path formulation. Let $D_{S,\bar{S}}$ denote the aggregate demand of all commodities with their origin in$S$ and destination in $\bar{S}$. CI ensure the total demand that must flow from $S$ to $\bar{S}$ will be satisfied by enough capacity on the arcs of $(S,\bar{S})$.
-
-In general, the LP solution will not violate CI. Therefore, we strength CI by using a integer rounding procedure to produce $Chv\acute{a}tal$-$Gomory$ (C-G) cuts.
+where we define cutset $(S,\bar{S})$ by partitioning the node set $N$ into any nonempty subset $S$ and its complement $\bar{S}=N\backslash S$. An arc $(i,j)$ that connects node $i$ in $S$ to node $j$ in $\bar{S}$  belongs to the cutset $(S,\bar{S})$. Let $Y_{S,\bar{S}}^f$ denote the total amount of type $f$ vehicles used on the cutset $(S,\bar{S})$ arcs, i.e., $\sum_{(i,j)\in (S,\bar{S})} y_{ij}^f$ for the arc-based formulation and $\sum_{q\in Q^f}\sum_{(i,j)\in (S,\bar{S})} \alpha_{ij}^q y_q^f $ for the cycle-path formulation. Let $D_{S,\bar{S}}$ denote the aggregate demand of all commodities with their origin in$S$ and destination in $\bar{S}$. CI ensure the total demand that must flow from $S$ to $\bar{S}$ will be satisfied by enough capacity on the arcs of $(S,\bar{S})$. In general, the LP solution will not violate CI. Therefore, we lift CI by using a integer rounding procedure to produce $Chv\acute{a}tal$-$Gomory$ (C-G) cuts which are proved to be valid by \cite{Kim1999Multimodal}. The impact of adding cuts on the pricing problem is negligible, thus there is no need to modify arc costs.
 \begin{align}
   \sum_{f\in F} \left( \left \lceil \frac{u_f}{u_l} \right \rceil Y_{S,\bar{S}}^f  \right)  \geq \left\lceil \frac{D_{S,\bar{S}}}{u_l} \right\rceil  \quad   \forall l\in F
 \end{align}
+The challenge in using cutset inequalities is the large number of potential cutsets, it is impractical to enumerate all the associated inequalities. Moveover, it becomes more computationally expensive to lift the inequalities as the scale of the problem increases. Therefore, we only generate single-node cutset inequalities, see \cite{Chouman2016Commodity} for the details.
+
+The dynamic generation of valid inequalities is embedded in the column generation approach. Once there exist violated cuts, column generation procedure is executed again. The price-and-cut loop stops only if neither negative reduced cost columns nor violated cuts are found.
+
 % prove???
 \subsection{Local search}
-Since the application of SND employing heterogeneous fleets by logistics enterprises will deal with large scale of data, it is necessary to present efficient algorithms to find high-quality feasible solutions efficiently. To satisfy the need of solving large scale of instances, we propose a two-stage heuristics algorithm to find feasible solutions.
+Based on the linear solution obtained from lower bound, we consider it as a good neighborhood to search for feasible solutions. Furthermore, since the application of SND employing heterogeneous fleets by logistics enterprises will deal with large-scale network, it is necessary to present efficient algorithms to find high-quality feasible solutions efficiently. Therefore, we propose a two-stage local search algorithm to obtain feasible solutions.
 
-At each node on the searching tree, the column generation method will provide the value of $x_{ij}^k$ and $y_{ij}^f$. The arc subset $A_1$ includes arcs with nonzero flow on it. Another arc subset $A_2$ includes arcs with nonzero fleets on it. It is easy to find that $A_1\subseteq A_2$ because of the capacity constraints. The values of $\sum_{(i,j)\in A_2}u^f y_{ij}^f $ decide the arc capacity $u_{ij}$ in $A_1$.
+After we obtain the lower bound, the CG and cutting plane method will provide the value of $\bar{x}_{ij}^k$ and $\bar{y}_{ij}^f$. Then define the arc subset including arcs with nonzero flow as $A_1$, i.e., $A_1 = \{ (i,j)\in A : \sum_{k\in K} \bar{x}_{ij}^k >0 \} $, and another arc subset including arcs with nonzero fleets as $A_2$, i.e., $A_2 =\{  (i,j)\in A : \sum_{f\in F} \bar{y}_{ij}^f >0 \}$. It is easy to find that $A_1\subseteq A_2 \subseteq A$ because of the capacity constraints. The first stage satisfy O-D demands and determine flows on each arc $(i,j)\in A_1$. The second stage ensures the balance of fleets and provides enough capacity for flows on each arc $(i,j)\in A_2$. The corresponding formulations in two stages are defined as follows.
 
-\subsubsection{Stage 1: capacitated multi-commodity minimum cost flow problem (CMCF)}
-Without considering the design-balance constraints, the capacitated multi-commodity minimum cost flow problem (CMCF) is obtained for given arc capacity. The solutions of the CMCF  determine the flow distribution of each commodity on each arc $(i,j)\in A_1$.
+\subsubsection{Stage 1: flow distribution problem}
+Without taking service selection and fleet assignment into account, the formulation of flow distribution problem is actually a capacitated multi-commodity minimum cost flow problem (CMCF). The values of $\sum_{(i,j)\in A_2}u^f y_{ij}^f $ decide the arc capacity $u_{ij}$ in $A_1$.
 \begin{align}
-   \min& \sum_{(i,j)\in A_1}\sum_{k\in K} \bar{c}_{ij}^k x_{ij}^k     \\
+   \min& \sum_{(i,j)\in A_1}\sum_{k\in K} c_{ij}^k x_{ij}^k     \\
    \rm{s.t.} & \nonumber \\
          &  \sum_{j\in N_i^+}x_{ij}^k - \sum_{j\in N_i^-}x_{ji}^k = w_i^k     \quad      \forall i\in N, \forall k\in K,  \\
          &  \sum_{k\in K} x_{ij}^k \leq u_{ij}      \quad    \forall (i,j)\in A_1,  \\
         &  x_{ij}^k \geq 0   \quad    \forall (i,j)\in A_1, \forall k\in K.
 \end{align}
-After solving the CMCF and redistributing the flow on each arc, the arcs without flow are removed from $A_1$.
 
-\subsubsection{Stage 2: fleet assignment problem (FAP)}
-After the flow distribution of origin-to-destination commodities has been completed, we need to assign heterogeneous fleets to provide transportation services. Let $\Omega_{ij}$ be the total flow of all commodities distributed on arc $(i,j) \in A_2$, which equals $\sum_{k\in K}\bar{x}_{ij}^k$. The mathematical formulation of Stage 2 defined on arc set $A_2$ is as follow:
+After solving the CMCF and redistributing the flow on each arc, the arcs without flow are removed from $A_1$, i.e., $A_1 = A_1 \backslash  \{ (i,j)\in A_1 : \sum_{k\in K} x_{ij}^k =0 \}$.
+
+\subsubsection{Stage 2: fleet assignment problem}
+After the flow distribution to satisfy demands of all O-D commodities has been completed, we need to assign heterogeneous fleets to provide transportation services. Let $\Omega_{ij}$ be the total flow of all commodities distributed on arc $(i,j) \in A_2$, which equals $\sum_{k\in K}x_{ij}^k$ provided by solving CMCF in the first stage. The mathematical formulation of Stage 2 defined on arc set $A_2$ is as follow:
 \begin{align}
   \min & \sum_{f\in F}\sum_{(i,j)\in A_2} h_{ij}^f y_{ij}^f \\
     \rm{s.t.} & \nonumber \\
@@ -249,13 +285,100 @@ After the flow distribution of origin-to-destination commodities has been comple
      & \sum_{f\in F} u^f y_{ij}^f \geq \Omega_{ij}      \quad       \forall (i,j)\in A_2   \label{cap} \\
      & y_{ij}^f \in Z_0^+       \quad       \forall (i,j)\in A_2, \forall f\in F
 \end{align}
+
 Constraints (\ref{cap}) ensure each service arc will provide sufficient vehicle capacity for the total flow.
 
 \subsubsection{Cycle-based neighborhoods}
-To improve the upper bound, we introduce cycle-based neighborhoods to search for better feasible solutions. The cycle-based neighborhoods was first proposed by Crainic to solve fixed-charge capacity multicommodity network design.
+After the two formulations are solved, we obtain a feasible solution of the original model. The quality of the feasible solution depends on the two arc subsets $A_1$ and $A_2$. To find promising $A_1$ and $A_2$, we introduce cycle-based neighborhoods to search for better feasible solutions. The cycle-based neighborhoods have been presented and proved to be efficient when solving CMND-related problems, see \cite{Ghamlouche2003Cycle, Ghamlouche2004Path,Li2016Design}.
+
+The cycle-based neighborhoods aim at redirecting flow on one path to another, and exploring the space of arc subsets $A_1$ and $A_2$ through opening or closing some arcs. To illustrate, consider the partial network in \ref{cycle}, there is a cycle formed by paths $\{ (A,B),(B,C),(C,F) \}$ and $\{ (A,E),(E,F)\}$. If we redirect the flow from the former to the latter, a new solution will be generated by opening arcs $(A,E),(E,F)$ and closing empty arcs $(A,B),(B,C),(C,F)$. The procedure of finding a cycle-based neighborhood can be summarized as follows.
+\begin{itemize}
+  \item Identify a cycle containing two paths connecting two points.
+  \item Redirecting the flow from one path to another and ensure that at least one open arc becomes empty.
+  \item Open all formerly closed arcs in the cycle and close all formerly open arcs if they are empty after the flow redirection.
+\end{itemize}
+
+\begin{figure}[H]
+\setlength{\abovecaptionskip}{-5pt}
+\setlength{\belowcaptionskip}{-5pt}
+\centering
+\includegraphics[width=0.5\linewidth]{F3.png}
+\caption{\small Example of cycle in partial network}
+\label{cycle}
+\end{figure}
+
+It is very important to implement an efficient procedure to find a promising neighborhood since complete evaluation of all moves is not practical, especially facing huge networks. Note that since we have to close at least one previously open arc, it seems suitable to start from a nonempty open arc $(i^*,j^*)$ with $\gamma = \sum_{k\in K} x_{i^*j^*}^k$ units of flow. Since the arc $(i^*,j^*)$ will be closed after the flow redirection, the residual capacity of any cycle associated with $(i^*,j^*)$ must be at least $\gamma$. A residual network must be built to efficiently search for low-cost cycles corresponding to promising moves without exhaustive exploration and exact evaluation.
+
+To build such a residual network associated to $(i^*,j^*)$ and $\gamma$ units of flow redirection, we include two types of arc sets in the new network, one with positive arc cost and the other with negative arc cost. Each arc in the original network will be replaced by at most two arcs $(i,j)^+$ and $(j,i)^-$ from the two arc sets respectively.Define $\bar{c}_{ij}$ as the average flow cost on arc $(i,j)$, i.e. $\bar{c}_{ij} = \sum_{k\in K} c_{ij}^k / |K|$. Let $\bar{F}$ denote the average fixed cost to evaluate the impact of fleet assignment because of opening or closing an arc, which equals $\sum_{f\in F}h_{ij}^f/ |F|$.
+
+Arc $(i,j)^+$ will be included in the residual network if the residual capacity of arc $(i,j)$ is no less than $\gamma$, i.e. $ u_{ij} - \sum_{k\in K} x_{ij}^k \geq \gamma$. The cost $c_{ij}^+$ corresponding to $(i,j)^+$ approximates the additional cost of distribute $\gamma$ units of flow on arc $(i,j)$. It is calculated as the additional flow cost, plus the average fixed cost if arc $(i,j)$ is closed at present, i.e. $(i,j) \notin A_2$.
+\begin{equation*}
+c_{ij}^+ = \left\{
+\begin{aligned}
+&\bar{c}_{ij} \gamma + \bar{F}  & & if\ (i,j) \notin A_2, \\
+&\bar{c}_{ij} \gamma                 & & otherwise.
+\end{aligned}
+\right.
+\end{equation*}
+
+Since arc $(j,i)^-$ is used to represent the flow reduction on arc $(i,j)$, it will be included in the residual network only if the current flow on $(i,j)$ is no less than $\gamma$. Symmetrically, the cost $c_{ji}^-$ associated to $(j,i)^-$ approximates the reduced cost of decreasing $\gamma$ units of flow on arc $(i,j)$. It is calculated as the reduced flow cost, minus the average fixed cost if arc $(i,j)$ will be empty after reduction of $\gamma$ units of flow.
+\begin{equation*}
+c_{ji}^- = \left\{
+\begin{aligned}
+&-\bar{c}_{ij} \gamma - \bar{F}  &if \ & \sum_{k\in K} x_{ij}^k = \gamma, \\
+&-\bar{c}_{ij} \gamma                  &if \ &\sum_{k\in K} x_{ij}^k > \gamma.
+\end{aligned}
+\right.
+\end{equation*}
+
+Such a residual network aims at identifying a lowest-cost cycle containing arc $(i^*,j^*)$ to redirect $\gamma$ units of flow. Moreover, it takes into account the influence of opening or closure of arcs to search for better feasible solutions. To illustrate how to find the lowest-cost cycle in the residual network, consider the network example of \ref{NetworkExample}. Suppose arc $(A,B)$ is the candidate arc to be closed, the residual network associated with $(A,B)$ is shown in the \ref{NetworkExample}. The average flow costs of all arcs in the example are assumed to be 2, and the average fixed cost $\bar{F}$ is 3. Arcs in the residual network are labeled by their costs. Note that there are two cycles associated with arc $(A,B)$: $(A,E),(E,F),(F,C),(C,B),(B,A)$ and $(A,E),(E,B),(B,A)$. The two cycles have costs of -7, 4,respectively. Since the former has the lowest cost, 2 units of flow are moved from path $(A,B),(B,C),(C,F)$ to path $(A,E),(E,F)$. Therefore, a new neighborhood is obtained by opening arcs $(A,E),(E,F)$ and closing empty arcs $(A,B),(B,C),(C,F)$.
+\begin{figure}[H]
+\setlength{\abovecaptionskip}{-5pt}
+\setlength{\belowcaptionskip}{-5pt}
+\centering
+\includegraphics[width=0.9\linewidth]{F4.png}
+\caption{\small Network example associated with $(A,B)$}
+\label{NetworkExample}
+\end{figure}
+
+\subsubsection{Main local search loop}
+Since each new neighborhood is associated with a candidate arc, let $A^+$ denote the candidate arcs, which equals $\{ (i,j)\in A: \sum_{k\in K} x_{ij}^k > 0 \}$. With respect to each arc $(i^*,j^*)$ in $A^+$, we build a residual network and find the shortest path from $i^*$ to $j^*$ to complete the cycle. We still employ the label-correcting algorithm implemented by \cite{Ahuja1993Network} to identify the shortest path.
+
+Note that the closure of some arcs may lead to infeasible neighboring solutions. Therefore it is necessary to check whether at least one path links the origin and destination of each commodity before comparing the cycle cost. Although it can not ensure the feasibility of the first stage when solving the flow distribution problem, it still decreases the appearance of infeasible local search moves.
+
+Once the lowest cost cycle is found, $A_1$ is updated by the move including opening and closure of some arcs. Then we solve the flow distribution problem and update $A_1$ again by closing empty arcs. Before solving the fleet assignment problem, $A_2$ is updated by $A_1 \cup A_2$. If the two stages are both feasible, we obtain a feasible solution of the original formulation. Furthermore, $A_1$ and $A_2$ in the next iteration are determined by this feasible solution. To explore more extensive search space, we assign a tabu status to the arc associated with the feasible move. The local search approach terminates if either of the two stages is infeasible or the maximum iteration is reached. The sketch of the local search algorithm is as follows.
+
+% algorithm framework
+\begin{algorithm}[H]
+%\SetAlgoNoLine
+\caption{Local search algorithm}
+\LinesNumbered
+\SetNlSkip{1.2em}
+\KwIn{Linear solution obtained by CG}
+\While{termination criterion not met}
+{
+    determine $A_1,A_2$ and $A^+$\;
+    \ForEach{$(i,j)\in A^+$}
+    {
+        create residual network, and determine the best cycle\;
+    }
+    find the cycle with minimum cost\;
+    update $A_1$ then solve flow distribution problem, stop if infeasible\;
+    update $A_1$ and $A_2$\;
+    solve vehicle assignment problem and stop if infeasible\;
+    update the current solution\;
+    assign a tabu status to $(i,j)$\;
+    \If{find better solution}
+    {
+        update best feasible solution\;
+    }
+}
+\KwOut{best feasible solution}
+\end{algorithm}
+
 
 \section{Numerical experiments and analyses}
-The computation study is implemented in C++, using CPLEX 12.63 as the MIP-solver. All experiments are performed using a computer with four 64-bit 2.4 GHz Intel Core processors and 4 GB of RAM, running Window 10.
+The computation study is implemented in C++, using CPLEX 12.63 as the linear programming solver. All experiments are performed using a computer with four 64-bit 2.4 GHz Intel Core processors and 4 GB of RAM, operating under Windows 10. Computing time are reported in seconds.
 
 \section{Conclusion}
 
