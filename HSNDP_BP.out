@@ -5,7 +5,7 @@
 \BOOKMARK [2][-]{subsection.3.2}{Arc-based formulation}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.3}{Cycle-path formulation}{section.3}% 6
 \BOOKMARK [1][-]{section.4}{Solution method}{}% 7
-\BOOKMARK [2][-]{subsection.4.1}{Column-and-cut generation}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Column-and-cut generation \(C\046CG\)}{section.4}% 8
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Column generation \(CG\)}{subsection.4.1}% 9
 \BOOKMARK [3][-]{subsubsection.4.1.2}{Cutting plane}{subsection.4.1}% 10
 \BOOKMARK [2][-]{subsection.4.2}{Local search}{section.4}% 11
@@ -14,4 +14,9 @@
 \BOOKMARK [3][-]{subsubsection.4.2.3}{Cycle-based neighborhoods}{subsection.4.2}% 14
 \BOOKMARK [3][-]{subsubsection.4.2.4}{Main local search loop}{subsection.4.2}% 15
 \BOOKMARK [1][-]{section.5}{Numerical experiments and analyses}{}% 16
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [2][-]{subsection.5.1}{Data instances}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.2}{Parameter setting}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.3}{Computational results}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Evaluation of the column-and-cut generation approach}{subsection.5.3}% 20
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Evaluation of the local search approach}{subsection.5.3}% 21
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 22

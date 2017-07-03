@@ -9,28 +9,28 @@
   \expandafter\ifx\csname doi\endcsname\relax
   \def\doi{doi:\discretionary{}{}{}\begingroup \urlstyle{rm}\Url}\fi \fi
 
-\bibitem[{Ahuja et~al.(1993)Ahuja, Magnanti, and
-  Mirchandani}]{Ahuja1993Network}
-Ahuja, RK, TL~Magnanti, P~Mirchandani. 1993.
-\newblock Network ﬂow-theory, algorithm, and applications.
-\newblock {\it Prentice-Hall, Englewood Cliffs, NJ\/} .
+\bibitem[{Ahuja et~al.(1993)Ahuja, Magnanti, and Orlin}]{Ahuja1993Network}
+Ahuja, Ravindra~K, Thomas~L Magnanti, James~B Orlin. 1993.
+\newblock Network flows: theory, algorithms, and applications .
 
-\bibitem[{Andersen et~al.(2011)Andersen, M., T.~G., and
-  R.}]{Andersen2011Branch}
-Andersen, J., Christiansen M., Crainic T.~G., Nhaug R. 2011.
+\bibitem[{Andersen et~al.(2011)Andersen, Christiansen, Crainic, and
+  Gr{\o}nhaug}]{Andersen2011Branch}
+Andersen, Jardar, Marielle Christiansen, Teodor~Gabriel Crainic, Roar
+  Gr{\o}nhaug. 2011.
 \newblock Branch and price for service network design with asset management
   constraints.
 \newblock {\it Transportation Science\/} {\bf 45}(1) 33--49.
 
-\bibitem[{Andersen et~al.(2009b)Andersen, T.G., and M.}]{Andersen2009bService}
-Andersen, J., Crainic T.G., Christiansen M. 2009b.
+\bibitem[{Andersen et~al.(2009b)Andersen, Crainic, and
+  Christiansen}]{Andersen2009bService}
+Andersen, Jardar, Teodor~Gabriel Crainic, Marielle Christiansen. 2009b.
 \newblock Service network design with asset management: Formulations and
   comparative analyses.
-\newblock {\it Transportation Research Part C Emerging Technologies\/} {\bf
+\newblock {\it Transportation Research Part C: Emerging Technologies\/} {\bf
   17}(2) 197--207.
 
-\bibitem[{Chouman and Crainic(2015)}]{Chouman2015Cutting}
-Chouman, M., T.G. Crainic. 2015.
+\bibitem[{Chouman and Crainic(2014)}]{Chouman2015Cutting}
+Chouman, Mervat, Teodor~Gabriel Crainic. 2014.
 \newblock Cutting-plane matheuristic for service network design with
   design-balanced requirements.
 \newblock {\it Transportation Science\/} {\bf 49}(1) 99--113.
@@ -38,27 +38,34 @@ Chouman, M., T.G. Crainic. 2015.
 \bibitem[{Chouman et~al.(2009)Chouman, Crainic, and
   Gendron}]{Chouman2009Commodity}
 Chouman, Mervat, Teodor~Gabriel Crainic, Bernard Gendron. 2009.
-\newblock A cutting-plane algorithm for multicommodity capacitated ﬁxed
-  charge network design.
-\newblock {\it Technical report, Center for Research on Transportation,
-  Université de Montréal, Montréal\/} .
-
-\bibitem[{Chouman et~al.(2011)Chouman, Crainic, and
-  Gendron}]{Chouman2011Commodity}
-Chouman, Mervat, Teodor~Gabriel Crainic, Bernard Gendron. 2011.
-\newblock Commodity representations and cut-set-based inequalities for
-  multicommodity capacitated fixed-charge network design.
-\newblock {\it Technical report CIRRELT-2011-56, Centre Interuniversitaire de
-  Recherche sur Les Réseaux d’Entreprise, La Logistique et Les Transports,
-  Université de Montréal, Montréal\/} .
+\newblock {\it A cutting-plane algorithm for multicommodity capacitated
+  fixed-charge network design\/}.
+\newblock CIRRELT.
 
 \bibitem[{Chouman et~al.(2016)Chouman, Crainic, and
   Gendron}]{Chouman2016Commodity}
 Chouman, Mervat, Teodor~Gabriel Crainic, Bernard Gendron. 2016.
 \newblock Commodity representations and cut-set-based inequalities for
-  multicommodity capacitated ﬁxed-charge network design.
-\newblock {\it Transportation Science\/}
-  https://doi.org/10.1287/trsc.2015.0665.
+  multicommodity capacitated fixed-charge network design.
+\newblock {\it Transportation Science\/} {\bf 51}(2) 650--667.
+
+\bibitem[{Crainic(2000)}]{Crainic2000Service}
+Crainic, Teodor~Gabriel. 2000.
+\newblock Service network design in freight transportation.
+\newblock {\it European Journal of Operational Research\/} {\bf 122}(2)
+  272--288.
+
+\bibitem[{Crainic(2003)}]{crainic2003long}
+Crainic, Teodor~Gabriel. 2003.
+\newblock Long-haul freight transportation.
+\newblock {\it Handbook of transportation science\/}. Springer, 451--516.
+
+\bibitem[{Crainic et~al.(2001)Crainic, Frangioni, and
+  Gendron}]{crainic2001bundle}
+Crainic, Teodor~Gabriel, Antonio Frangioni, Bernard Gendron. 2001.
+\newblock Bundle-based relaxation methods for multicommodity capacitated fixed
+  charge network design.
+\newblock {\it Discrete Applied Mathematics\/} {\bf 112}(1) 73--99.
 
 \bibitem[{Crainic et~al.(2016)Crainic, Hewitt, Toulouse, and
   Vu}]{Crainic2016Service}
@@ -66,35 +73,24 @@ Crainic, Teodor~Gabriel, Mike Hewitt, Michel Toulouse, Duc~Minh Vu. 2016.
 \newblock Service network design with resource constraints.
 \newblock {\it Transportation Science\/} {\bf 50}(4).
 
-\bibitem[{Crainic(2000)}]{Crainic2000Service}
-Crainic, T.G. 2000.
-\newblock Service network design in freight transportation.
-\newblock {\it European Journal of Operational Research\/} {\bf 122}(2)
-  272--288.
-
-\bibitem[{Crainic(2003)}]{crainic2003long}
-Crainic, T.G. 2003.
-\newblock {\it Long-haul freight transportation\/}.
-\newblock Springer.
+\bibitem[{Gendron et~al.(1998)Gendron, Crainic, and
+  Frangioni}]{Gendron1999Multicommodity}
+Gendron, Bernard, Teodor~G Crainic, Antonio Frangioni. 1998.
+\newblock {\it Multicommodity capacitated network design\/}.
+\newblock Centre for Research on Transportation= Centre de recherche sur les
+  transports (CRT).
 
 \bibitem[{Gendron and Crainic(1994)}]{Gendron1994RELAXATIONS}
 Gendron, Bernard, Teodor~Gabriel Crainic. 1994.
 \newblock Relaxations for multicommodity capacitated network design problems.
-\newblock {\it Technical report, Publication CRT-945, Centre de Recherche sur
-  Les Transports, Université de Montréal, Montréal\/} .
+\newblock Tech. rep., Univ., CRT.
 
-\bibitem[{Gendron et~al.(1999)Gendron, Crainic, and
-  Frangioni}]{Gendron1999Multicommodity}
-Gendron, Bernard, Teodor~Gabriel Crainic, Antonio Frangioni. 1999.
-\newblock {\it Multicommodity capacitated network design\/}.
-\newblock Springer US.
-
-\bibitem[{Ghamlouche et~al.(2003)Ghamlouche, T.G., and
-  M.}]{Ghamlouche2003Cycle}
-Ghamlouche, I., Crainic T.G., Gendreau M. 2003.
+\bibitem[{Ghamlouche et~al.(2003)Ghamlouche, Crainic, and
+  Gendreau}]{Ghamlouche2003Cycle}
+Ghamlouche, Ilfat, Teodor~Gabriel Crainic, Michel Gendreau. 2003.
 \newblock Cycle-based neighbourhoods for fixed-charge capacitated
   multicommodity network design.
-\newblock {\it Operations Research\/} {\bf 51}(4) 655--667.
+\newblock {\it Operations research\/} {\bf 51}(4) 655--667.
 
 \bibitem[{Ghamlouche et~al.(2004)Ghamlouche, Crainic, and
   Gendreau}]{Ghamlouche2004Path}
@@ -103,54 +99,55 @@ Ghamlouche, Ilfat, Teodor~Gabriel Crainic, Michel Gendreau. 2004.
   multicommodity network design.
 \newblock {\it Annals of Operations Research\/} {\bf 131}(1) 109--133.
 
-\bibitem[{Kim et~al.(1999)Kim, C., K., and G.}]{Kim1999Multimodal}
-Kim, D., Barnhart C., Ware K., Reinhardt G. 1999.
-\newblock Multimodal express package delivery: a service network design
+\bibitem[{Kim et~al.(1999)Kim, Barnhart, Ware, and
+  Reinhardt}]{Kim1999Multimodal}
+Kim, Daeki, Cynthia Barnhart, Keith Ware, Gregory Reinhardt. 1999.
+\newblock Multimodal express package delivery: A service network design
   application.
 \newblock {\it Transportation Science\/} {\bf 33}(4) 391--407.
 
-\bibitem[{Li et~al.(2016)Li, Wei, Aneja, and Tian}]{Li2016Design}
-Li, Xiangyong, Kai Wei, Y.~P. Aneja, Peng Tian. 2016.
+\bibitem[{Li et~al.(2017)Li, Wei, Aneja, and Tian}]{li2017design}
+Li, Xiangyong, Kai Wei, YP~Aneja, Peng Tian. 2017.
 \newblock Design-balanced capacitated multicommodity network design with
   heterogeneous assets.
-\newblock {\it Omega\/} .
+\newblock {\it Omega\/} {\bf 67} 145--159.
 
 \bibitem[{Magnanti and Wong(1984)}]{Magnanti1984Network}
-Magnanti, T.~L., R.T. Wong. 1984.
-\newblock Network design and transportation planning: models and algorithms.
-\newblock {\it Transportation Science\/} {\bf 18}(1) 1--55.
-
-\bibitem[{Minh et~al.(2013)Minh, T., and M.}]{VuDucToulouse}
-Minh, V., Crainic T., Toulouse M. 2013.
-\newblock A three-stage matheuristic for the capacitated multi-commodity
-  fixed-cost network design with design-balance constraints.
-\newblock {\it Journal of heuristics\/} {\bf 19} 757--795.
+Magnanti, Thomas~L, Richard~T Wong. 1984.
+\newblock Network design and transportation planning: Models and algorithms.
+\newblock {\it Transportation science\/} {\bf 18}(1) 1--55.
 
 \bibitem[{Minoux(1989)}]{Minoux1989Networks}
-Minoux, M. 1989.
+Minoux, Michel. 1989.
 \newblock Networks synthesis and optimum network design problems: Models,
   solution methods and applications.
-\newblock {\it Networks\/} {\bf 19}(3) 313–360.
+\newblock {\it Networks\/} {\bf 19}(3) 313--360.
 
-\bibitem[{Pedersen et~al.(2009)Pedersen, T.G., and
-  O.~B.~G.}]{Pedersen2009Models}
-Pedersen, M.B., Crainic T.G., Madsen O.~B.~G. 2009.
+\bibitem[{Pedersen et~al.(2009)Pedersen, Crainic, and
+  Madsen}]{Pedersen2009Models}
+Pedersen, Michael~Berliner, Teodor~Gabriel Crainic, Oli~BG Madsen. 2009.
 \newblock Models and tabu search metaheuristics for service network design with
   asset-balance requirements.
 \newblock {\it Transportation Science\/} {\bf 43}(2) 158--177.
 
-\bibitem[{Smilowitz et~al.(2002)Smilowitz, A., and
-  C.F.}]{Smilowitz2002Deferred}
-Smilowitz, K.~R., Atamtürk A., Daganzo C.F. 2002.
+\bibitem[{Smilowitz et~al.(2003)Smilowitz, Atamt{\"u}rk, and
+  Daganzo}]{Smilowitz2002Deferred}
+Smilowitz, Karen~R, Alper Atamt{\"u}rk, Carlos~F Daganzo. 2003.
 \newblock Deferred item and vehicle routing within integrated networks.
 \newblock {\it Transportation Research Part E: Logistics and Transportation
   Review\/} {\bf 39}(4) 305--323.
 
-\bibitem[{Teypaz et~al.(2010)Teypaz, S., and V.D.}]{Teypaz2010A}
-Teypaz, N., Schrenk S., Cung V.D. 2010.
+\bibitem[{Teypaz et~al.(2010)Teypaz, Schrenk, and Cung}]{Teypaz2010A}
+Teypaz, Nicolas, Susann Schrenk, Van-Dat Cung. 2010.
 \newblock A decomposition scheme for large-scale service network design with
   asset management.
 \newblock {\it Transportation Research Part E: Logistics and Transportation
   Review\/} {\bf 46}(1) 156--170.
+
+\bibitem[{Vu et~al.(2013)Vu, Crainic, and Toulouse}]{VuDucToulouse}
+Vu, Duc~Minh, Teodor~Gabriel Crainic, Michel Toulouse. 2013.
+\newblock A three-phase matheuristic for capacitated multi-commodity fixed-cost
+  network design with design-balance constraints.
+\newblock {\it Journal of Heuristics\/} {\bf 19}(5) 757--795.
 
 \end{thebibliography}
