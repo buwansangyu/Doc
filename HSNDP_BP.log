@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  2 JUL 2017 22:45
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  4 JUL 2017 16:50
 entering extended mode
 **C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
 (C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
@@ -551,7 +551,7 @@ Missing character: There is no Ô in font cmr10!
 Missing character: There is no ¨ in font cmr10!
 Missing character: There is no Å in font cmr10!
 
-[3] <F1.png, id=174, 279.9258pt x 244.7544pt>
+[3] <F1.png, id=178, 279.9258pt x 244.7544pt>
 File: F1.png Graphic file (type png)
  <use F1.png>
 Package pdftex.def Info: F1.png used on input line 116.
@@ -575,14 +575,14 @@ Overfull \hbox (54.75012pt too wide) in paragraph at lines 211--241
 $[]$ 
  []
 
-[8] [9] [10] <F2.png, id=318, 287.6346pt x 230.3004pt>
+[8] [9] [10] <F2.png, id=322, 287.6346pt x 230.3004pt>
 File: F2.png Graphic file (type png)
  <use F2.png>
 Package pdftex.def Info: F2.png used on input line 306.
 (pdftex.def)             Requested size: 271.0125pt x 216.99545pt.
  [11]
 [12 <C:/Users/Wang/Documents/Latex/HFSND/F2.png>]
-<F3.png, id=337, 579.6054pt x 267.399pt>
+<F3.png, id=341, 579.6054pt x 267.399pt>
 File: F3.png Graphic file (type png)
  <use F3.png>
 Package pdftex.def Info: F3.png used on input line 340.
@@ -603,7 +603,7 @@ Package epstopdf Info: Source file: <F4.eps>
 eps>
 (epstopdf)             \includegraphics on input line 396.
 Package epstopdf Info: Output file is already uptodate.
- <F4-eps-converted-to.pdf, id=384, 748.7975pt x 472.76625pt>
+ <F4-eps-converted-to.pdf, id=388, 748.7975pt x 472.76625pt>
 File: F4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use F4-eps-converted-to.pdf>
@@ -625,30 +625,49 @@ Package epstopdf Info: Source file: <F5.eps>
 eps>
 (epstopdf)             \includegraphics on input line 496.
 Package epstopdf Info: Output file is already uptodate.
- <F5-eps-converted-to.pdf, id=443, 821.0675pt x 545.03625pt>
+ <F5-eps-converted-to.pdf, id=447, 821.0675pt x 545.03625pt>
 File: F5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use F5-eps-converted-to.pdf>
 Package pdftex.def Info: F5-eps-converted-to.pdf used on input line 496.
 (pdftex.def)             Requested size: 487.81918pt x 323.82239pt.
- [19] [20 <C:/Users/Wang/Documents/Latex/HFSND/F5-eps-converted-to.pdf>] (C:\Us
-ers\Wang\Documents\Latex\HFSND\HSNDP_BP.bbl
-[21])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 514.
- [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 514.
- (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 514.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 514.
+ [19]
+Package epstopdf Info: Source file: <F6.eps>
+(epstopdf)                    date: 2017-07-04 10:36:15
+(epstopdf)                    size: 35411 bytes
+(epstopdf)             Output file: <F6-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-07-04 10:38:55
+(epstopdf)                    size: 20533 bytes
+(epstopdf)             Command: <epstopdf --outfile=F6-eps-converted-to.pdf F6.
+eps>
+(epstopdf)             \includegraphics on input line 531.
+Package epstopdf Info: Output file is already uptodate.
+
+<F6-eps-converted-to.pdf, id=457, 748.7975pt x 501.875pt>
+File: F6-eps-converted-to.pdf Graphic file (type pdf)
+
+<use F6-eps-converted-to.pdf>
+Package pdftex.def Info: F6-eps-converted-to.pdf used on input line 531.
+(pdftex.def)             Requested size: 487.81918pt x 326.9577pt.
+ [20 <C:/Users/Wang/Documents/Latex/HFSND/F5-eps-converted-to.pdf>] [21 <C:/Use
+rs/Wang/Documents/Latex/HFSND/F6-eps-converted-to.pdf>] (C:\Users\Wang\Document
+s\Latex\HFSND\HSNDP_BP.bbl [22])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 547.
+ [23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 547.
+
+(C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 547.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 547.
 Package rerunfilecheck Info: File `HSNDP_BP.out' has not changed.
-(rerunfilecheck)             Checksum: ED769826C893D778B7C949AE57EA1F77;1642.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 514.
+(rerunfilecheck)             Checksum: 8813C347C92FD2EE923206BA20B620D9;1738.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 547.
  ) 
 Here is how much of TeX's memory you used:
- 9037 strings out of 493921
- 128447 string characters out of 3147285
- 261202 words of memory out of 3000000
- 12019 multiletter control sequences out of 15000+200000
+ 9049 strings out of 493921
+ 128653 string characters out of 3147285
+ 261329 words of memory out of 3000000
+ 12026 multiletter control sequences out of 15000+200000
  16147 words of font info for 63 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,18n,35p,1308b,554s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -670,9 +689,9 @@ nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on HSNDP_BP.pdf (22 pages, 510103 bytes).
+Output written on HSNDP_BP.pdf (23 pages, 532723 bytes).
 PDF statistics:
- 597 PDF objects out of 1000 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 644 PDF objects out of 1000 (max. 8388607)
+ 152 named destinations out of 1000 (max. 500000)
+ 215 words of extra memory for PDF output out of 10000 (max. 10000000)
 
