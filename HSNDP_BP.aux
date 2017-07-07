@@ -37,8 +37,8 @@
 \citation{Crainic2016Service}
 \citation{Kim1999Multimodal}
 \citation{li2017design}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Problem statement and model formulation}{3}{section.3}}
-\newlabel{formulation}{{3}{3}{Problem statement and model formulation}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem statement and mathematical formulation}{3}{section.3}}
+\newlabel{formulation}{{3}{3}{Problem statement and mathematical formulation}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem description}{4}{subsection.3.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Example of heterogeneous fleet}}{4}{figure.1}}
 \newlabel{Fig1}{{1}{4}{Example of heterogeneous fleet}{figure.1}{}}
@@ -50,15 +50,17 @@
 \newlabel{xA}{{5}{5}{Arc-based formulation}{equation.3.5}{}}
 \newlabel{yA}{{6}{5}{Arc-based formulation}{equation.3.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cycle-path formulation}{5}{subsection.3.3}}
+\citation{Andersen2009bService}
 \newlabel{objCP}{{7}{6}{Cycle-path formulation}{equation.3.7}{}}
 \newlabel{capacityCP}{{8}{6}{Cycle-path formulation}{equation.3.8}{}}
 \newlabel{demandCP}{{9}{6}{Cycle-path formulation}{equation.3.9}{}}
 \newlabel{xCP}{{10}{6}{Cycle-path formulation}{equation.3.10}{}}
 \newlabel{yCP}{{11}{6}{Cycle-path formulation}{equation.3.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Solution method}{6}{section.4}}
-\newlabel{method}{{4}{6}{Solution method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Summary of two formulations}{6}{subsection.3.4}}
 \citation{Andersen2011Branch}
 \citation{Chouman2009Commodity,Chouman2016Commodity,Chouman2015Cutting}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Solution method}{7}{section.4}}
+\newlabel{method}{{4}{7}{Solution method}{section.4}{}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Hybrid solution method}}{7}{algocf.1}}
 \newlabel{Methodology}{{1}{7}{Solution method}{algocf.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Column-and-cut generation (C\&CG)}{7}{subsection.4.1}}
@@ -66,53 +68,54 @@
 \citation{Ahuja1993Network}
 \citation{Gendron1994RELAXATIONS,Gendron1999Multicommodity}
 \citation{Chouman2015Cutting}
-\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Column generation procedure}}{8}{algocf.2}}
-\newlabel{CG}{{2}{8}{Column generation (CG)}{algocf.2}{}}
 \citation{Chouman2015Cutting}
 \citation{Kim1999Multimodal}
-\citation{Kim1999Multimodal}
-\citation{Chouman2016Commodity}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Column generation procedure}}{9}{algocf.2}}
+\newlabel{CG}{{2}{9}{Column generation (CG)}{algocf.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Cutting plane}{9}{subsubsection.4.1.2}}
 \newlabel{SI}{{14}{9}{Cutting plane}{equation.4.14}{}}
+\citation{Kim1999Multimodal}
+\citation{Chouman2016Commodity}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Local search}{10}{subsection.4.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Stage 1: flow distribution problem}{10}{subsubsection.4.2.1}}
-\citation{Ghamlouche2003Cycle,Ghamlouche2004Path,li2017design}
+\newlabel{localSearch}{{4.2}{10}{Local search}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Stage 1: flow distribution problem}{11}{subsubsection.4.2.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Stage 2: fleet assignment problem}{11}{subsubsection.4.2.2}}
-\newlabel{cap}{{23}{11}{Stage 2: fleet assignment problem}{equation.4.23}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Cycle-based neighborhoods}{11}{subsubsection.4.2.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Example of cycle in partial network}}{12}{figure.2}}
-\newlabel{cycle}{{2}{12}{Example of cycle in partial network}{figure.2}{}}
+\citation{Ghamlouche2003Cycle,Ghamlouche2004Path,li2017design}
+\newlabel{cap}{{23}{12}{Stage 2: fleet assignment problem}{equation.4.23}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Cycle-based neighborhoods}{12}{subsubsection.4.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Example of cycle in partial network}}{13}{figure.2}}
+\newlabel{cycle}{{2}{13}{Example of cycle in partial network}{figure.2}{}}
 \citation{Ahuja1993Network}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Network example associated with $(A,B)$}}{13}{figure.3}}
-\newlabel{NetworkExample}{{3}{13}{Network example associated with $(A,B)$}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Main local search loop}{14}{subsubsection.4.2.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Network example associated with $(A,B)$}}{14}{figure.3}}
+\newlabel{NetworkExample}{{3}{14}{Network example associated with $(A,B)$}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Main local search loop}{15}{subsubsection.4.2.4}}
 \citation{crainic2001bundle}
 \citation{Ghamlouche2003Cycle,Pedersen2009Models}
 \citation{Chouman2015Cutting}
-\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Local search algorithm}}{15}{algocf.3}}
-\newlabel{LS}{{3}{15}{Main local search loop}{algocf.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical experiments and analyses}{15}{section.5}}
-\newlabel{experiment}{{5}{15}{Numerical experiments and analyses}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data instances}{15}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Parameter setting}{16}{subsection.5.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evolution of solution values solved by local search approach}}{16}{figure.4}}
-\newlabel{Evolution}{{4}{16}{Evolution of solution values solved by local search approach}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Computational results}{17}{subsection.5.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Performance comparisons to CPLEX}}{18}{table.1}}
-\newlabel{results}{{1}{18}{Performance comparisons to CPLEX}{table.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Evaluation of the column-and-cut generation approach}{19}{subsubsection.5.3.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Distribution of relative percentage gaps}}{19}{table.2}}
-\newlabel{distributions}{{2}{19}{Distribution of relative percentage gaps}{table.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Evaluation of the local search approach}{19}{subsubsection.5.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparative upper bounds of CPLEX and local search approach}}{20}{figure.5}}
-\newlabel{threeUB}{{5}{20}{Comparative upper bounds of CPLEX and local search approach}{figure.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Impact of heterogeneous fleet issue}{20}{subsubsection.5.3.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parameters and total costs of two networks}}{20}{table.3}}
-\newlabel{heterogeneous}{{3}{20}{Parameters and total costs of two networks}{table.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Changes of total cost as $|F|$ increases}}{21}{figure.6}}
-\newlabel{twoNetwork}{{6}{21}{Changes of total cost as $|F|$ increases}{figure.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{21}{section.6}}
-\newlabel{conclusion}{{6}{21}{Conclusions}{section.6}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Local search algorithm}}{16}{algocf.3}}
+\newlabel{LS}{{3}{16}{Main local search loop}{algocf.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical experiments and analyses}{16}{section.5}}
+\newlabel{experiment}{{5}{16}{Numerical experiments and analyses}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data instances}{16}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Parameter setting}{17}{subsection.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evolution of solution values obtained by local search approach}}{17}{figure.4}}
+\newlabel{Evolution}{{4}{17}{Evolution of solution values obtained by local search approach}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Computational results}{18}{subsection.5.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Performance comparisons with CPLEX}}{19}{table.1}}
+\newlabel{results}{{1}{19}{Performance comparisons with CPLEX}{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Evaluation of column-and-cut generation approach}{20}{subsubsection.5.3.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Distribution of relative percentage gaps}}{20}{table.2}}
+\newlabel{distributions}{{2}{20}{Distribution of relative percentage gaps}{table.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Evaluation of local search approach}{20}{subsubsection.5.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparative upper bounds of CPLEX and local search approach}}{21}{figure.5}}
+\newlabel{threeUB}{{5}{21}{Comparative upper bounds of CPLEX and local search approach}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Impact of heterogeneous fleet issue}{21}{subsubsection.5.3.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parameters and total costs of two networks}}{21}{table.3}}
+\newlabel{heterogeneous}{{3}{21}{Parameters and total costs of two networks}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Change of total costs as $|F|$ increases}}{22}{figure.6}}
+\newlabel{twoNetwork}{{6}{22}{Change of total costs as $|F|$ increases}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{22}{section.6}}
+\newlabel{conclusion}{{6}{22}{Conclusions}{section.6}{}}
 \bibstyle{ormsv080}
 \bibdata{References}
 \bibcite{Ahuja1993Network}{{1}{1993}{{Ahuja et~al.}}{{Ahuja, Magnanti, and Orlin}}}
