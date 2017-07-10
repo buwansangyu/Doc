@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  7 JUL 2017 22:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.23)  10 JUL 2017 20:56
 entering extended mode
 **C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
 (C:/Users/Wang/Documents/Latex/HFSND/HSNDP_BP.tex
@@ -511,28 +511,32 @@ LaTeX Info: Redefining \nameref on input line 47.
 (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.out)
 (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.out)
 \@outlinefile=\write3
-LaTeX Font Info:    Try loading font information for U+msa on input line 65.
+LaTeX Font Info:    Try loading font information for U+msa on input line 62.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 65.
+LaTeX Font Info:    Try loading font information for U+msb on input line 62.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 65.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 62.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (1.89258pt too wide) in paragraph at lines 69--71
+
+LaTeX Warning: No \author given.
+
+
+Overfull \hbox (1.89258pt too wide) in paragraph at lines 65--67
 []\OT1/cmr/m/n/10 Service net-work de-sign ad-dresses de-ci-sions re-lated to t
 rans-porta-tion ser-vices se-lec-tion and origin-to-destination
  []
 
 
-Overfull \hbox (1.55197pt too wide) in paragraph at lines 85--86
+Overfull \hbox (1.55197pt too wide) in paragraph at lines 80--81
 \OT1/cmr/m/n/10.95 Freight trans-porta-tion plays an in-creas-ingly im-por-tant
  role be-cause of rapid de-vel-op-ment of e-commerce.
  []
@@ -542,48 +546,47 @@ Overfull \hbox (1.55197pt too wide) in paragraph at lines 85--86
 
 
 {C:/Users/Wang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-[3] <F1.png, id=181, 279.9258pt x 244.7544pt>
+[3] <F1.png, id=177, 279.9258pt x 244.7544pt>
 File: F1.png Graphic file (type png)
  <use F1.png>
-Package pdftex.def Info: F1.png used on input line 114.
+Package pdftex.def Info: F1.png used on input line 109.
 (pdftex.def)             Requested size: 216.80669pt x 189.56691pt.
- [4 <C:/Users/Wang/Documents/Latex/HFSND/F1.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 135.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 130.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
- [5] [6]
-Overfull \hbox (54.75012pt too wide) in paragraph at lines 183--196
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
+ [4 <C:/Users/Wang/Documents/Latex/HFSND/F1.png>] [5] [6]
+Overfull \hbox (54.75012pt too wide) in paragraph at lines 178--191
 $[]$ 
  []
 
 [7]
-Overfull \hbox (54.75012pt too wide) in paragraph at lines 212--242
+Overfull \hbox (54.75012pt too wide) in paragraph at lines 205--235
 $[]$ 
  []
 
-[8] [9] [10] [11] <F2.png, id=332, 287.6346pt x 230.3004pt>
+[8] [9] [10] <F2.png, id=326, 287.6346pt x 230.3004pt>
 File: F2.png Graphic file (type png)
  <use F2.png>
-Package pdftex.def Info: F2.png used on input line 306.
+Package pdftex.def Info: F2.png used on input line 303.
 (pdftex.def)             Requested size: 271.0125pt x 216.99545pt.
-
-[12] [13 <C:/Users/Wang/Documents/Latex/HFSND/F2.png>]
-<F3.png, id=352, 579.6054pt x 267.399pt>
+ [11]
+[12 <C:/Users/Wang/Documents/Latex/HFSND/F2.png>]
+<F3.png, id=345, 579.6054pt x 267.399pt>
 File: F3.png Graphic file (type png)
  <use F3.png>
-Package pdftex.def Info: F3.png used on input line 340.
-(pdftex.def)             Requested size: 487.81918pt x 225.05428pt.
- [14 <C:/Users/Wang/Documents/Latex/HFSND/F3.png>]
-Overfull \hbox (54.75012pt too wide) in paragraph at lines 353--380
+Package pdftex.def Info: F3.png used on input line 337.
+(pdftex.def)             Requested size: 433.62164pt x 200.05096pt.
+ [13 <C:/Users/Wang/Documents/Latex/HFSND/F3.png>]
+Overfull \hbox (54.75012pt too wide) in paragraph at lines 350--377
 $[]$ 
  []
 
-[15] [16]
+[14] [15]
 Package epstopdf Info: Source file: <F4.eps>
 (epstopdf)                    date: 2017-07-01 22:43:57
 (epstopdf)                    size: 45826 bytes
@@ -592,76 +595,91 @@ Package epstopdf Info: Source file: <F4.eps>
 (epstopdf)                    size: 29051 bytes
 (epstopdf)             Command: <epstopdf --outfile=F4-eps-converted-to.pdf F4.
 eps>
-(epstopdf)             \includegraphics on input line 400.
+(epstopdf)             \includegraphics on input line 396.
 Package epstopdf Info: Output file is already uptodate.
- <F4-eps-converted-to.pdf, id=400, 748.7975pt x 472.76625pt>
+ <F4-eps-converted-to.pdf, id=394, 748.7975pt x 472.76625pt>
 File: F4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use F4-eps-converted-to.pdf>
-Package pdftex.def Info: F4-eps-converted-to.pdf used on input line 400.
-(pdftex.def)             Requested size: 433.62164pt x 273.77899pt.
- [17 <C:/Users/Wang/Documents/Latex/HFSND/F4-eps-converted-to.pdf>]
-Overfull \hbox (22.03084pt too wide) in paragraph at lines 421--461
+Package pdftex.def Info: F4-eps-converted-to.pdf used on input line 396.
+(pdftex.def)             Requested size: 379.41583pt x 239.54941pt.
+ [16 <C:/Users/Wang/Documents/Latex/HFSND/F4-eps-converted-to.pdf>]
+Overfull \hbox (22.03084pt too wide) in paragraph at lines 417--457
  [][] 
  []
 
-[18] [19]
+[17] [18]
 Package epstopdf Info: Source file: <F5.eps>
-(epstopdf)                    date: 2017-07-02 19:02:37
-(epstopdf)                    size: 62024 bytes
+(epstopdf)                    date: 2017-07-10 20:23:12
+(epstopdf)                    size: 32251 bytes
 (epstopdf)             Output file: <F5-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-07-02 22:42:37
-(epstopdf)                    size: 36358 bytes
+(epstopdf)                    date: 2017-07-10 20:27:32
+(epstopdf)                    size: 18056 bytes
 (epstopdf)             Command: <epstopdf --outfile=F5-eps-converted-to.pdf F5.
 eps>
-(epstopdf)             \includegraphics on input line 504.
+(epstopdf)             \includegraphics on input line 492.
 Package epstopdf Info: Output file is already uptodate.
- <F5-eps-converted-to.pdf, id=460, 821.0675pt x 545.03625pt>
+ <F5-eps-converted-to.pdf, id=451, 676.5275pt x 501.875pt>
 File: F5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use F5-eps-converted-to.pdf>
-Package pdftex.def Info: F5-eps-converted-to.pdf used on input line 504.
-(pdftex.def)             Requested size: 487.81918pt x 323.82239pt.
- [20]
+Package pdftex.def Info: F5-eps-converted-to.pdf used on input line 492.
+(pdftex.def)             Requested size: 433.62164pt x 321.68901pt.
+ [19 <C:/Users/Wang/Documents/Latex/HFSND/F5-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <F6.eps>
-(epstopdf)                    date: 2017-07-04 10:36:15
-(epstopdf)                    size: 35411 bytes
+(epstopdf)                    date: 2017-07-02 19:02:37
+(epstopdf)                    size: 62024 bytes
 (epstopdf)             Output file: <F6-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-07-04 10:38:55
-(epstopdf)                    size: 20533 bytes
+(epstopdf)                    date: 2017-07-10 20:24:53
+(epstopdf)                    size: 36358 bytes
 (epstopdf)             Command: <epstopdf --outfile=F6-eps-converted-to.pdf F6.
 eps>
-(epstopdf)             \includegraphics on input line 539.
+(epstopdf)             \includegraphics on input line 505.
 Package epstopdf Info: Output file is already uptodate.
-
-<F6-eps-converted-to.pdf, id=469, 748.7975pt x 501.875pt>
+ <F6-eps-converted-to.pdf, id=488, 821.0675pt x 545.03625pt>
 File: F6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use F6-eps-converted-to.pdf>
-Package pdftex.def Info: F6-eps-converted-to.pdf used on input line 539.
-(pdftex.def)             Requested size: 487.81918pt x 326.9577pt.
- [21 <C:/Users/Wang/Documents/Latex/HFSND/F5-eps-converted-to.pdf>] [22 <C:/Use
-rs/Wang/Documents/Latex/HFSND/F6-eps-converted-to.pdf>] (C:\Users\Wang\Document
-s\Latex\HFSND\HSNDP_BP.bbl [23])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 553.
- [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 553.
+Package pdftex.def Info: F6-eps-converted-to.pdf used on input line 505.
+(pdftex.def)             Requested size: 433.62164pt x 287.8449pt.
+ [20 <C:/Users/Wang/Documents/Latex/HFSND/F6-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <F7.eps>
+(epstopdf)                    date: 2017-07-04 10:36:15
+(epstopdf)                    size: 35411 bytes
+(epstopdf)             Output file: <F7-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-07-10 20:22:23
+(epstopdf)                    size: 20533 bytes
+(epstopdf)             Command: <epstopdf --outfile=F7-eps-converted-to.pdf F7.
+eps>
+(epstopdf)             \includegraphics on input line 540.
+Package epstopdf Info: Output file is already uptodate.
+ <F7-eps-converted-to.pdf, id=534, 748.7975pt x 501.875pt>
+File: F7-eps-converted-to.pdf Graphic file (type pdf)
 
-(C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 553.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 553.
+<use F7-eps-converted-to.pdf>
+Package pdftex.def Info: F7-eps-converted-to.pdf used on input line 540.
+(pdftex.def)             Requested size: 379.41583pt x 254.29874pt.
+ [21 <C:/Users/Wang/Documents/Latex/HFSND/F7-eps-converted-to.pdf>] (C:\Users\W
+ang\Documents\Latex\HFSND\HSNDP_BP.bbl [22]
+[23])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 557.
+ [24]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 557.
+ (C:\Users\Wang\Documents\Latex\HFSND\HSNDP_BP.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 557.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 557.
 Package rerunfilecheck Info: File `HSNDP_BP.out' has not changed.
 (rerunfilecheck)             Checksum: 554DA87D3569EF3DAC47CB84B073E6B5;1815.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 553.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 557.
  ) 
 Here is how much of TeX's memory you used:
- 9056 strings out of 493921
- 128737 string characters out of 3147285
- 262383 words of memory out of 3000000
- 12029 multiletter control sequences out of 15000+200000
+ 9061 strings out of 493921
+ 128852 string characters out of 3147285
+ 264493 words of memory out of 3000000
+ 12033 multiletter control sequences out of 15000+200000
  16147 words of font info for 63 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,18n,35p,1262b,554s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,18n,35p,1258b,554s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
@@ -671,18 +689,17 @@ ts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-msy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on HSNDP_BP.pdf (24 pages, 536903 bytes).
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on HSNDP_BP.pdf (24 pages, 539651 bytes).
 PDF statistics:
- 656 PDF objects out of 1000 (max. 8388607)
+ 681 PDF objects out of 1000 (max. 8388607)
  156 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

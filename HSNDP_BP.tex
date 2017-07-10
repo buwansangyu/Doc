@@ -46,30 +46,26 @@
 
 \begin{document}
 
-
 \singlespace
-
 \begin{titlepage}
-\title{A hybrid algorithm for large-scale service network design considering heterogeneous fleet}
-\author{Zujian Wang$^{1,2}$, Mingyao Qi$^{2}$, Chun Cheng$^3$%
-\\ \footnotesize{$^{1}$Department of Industrial Engineering, Tsinghua University, Beijing 100084, China}%
-\\ \footnotesize{$^{2}$Research Center on Modern Logistics, Graduate School at Shenzhen,}
-\\ \footnotesize{Tsinghua University, Shenzhen 518055, China}%
-\\ \footnotesize{$^{3}$Department of Mathematics and Industrial Engineering and CIRRELT,}
-\\ \footnotesize{Polytechnique Montr{\'e}al and CIRRELT, Montr{\'e}al H3C 3A7, Canada}%
-}
-
+\title{A hybrid algorithm for large-scale service network design considering a heterogeneous fleet}
+%\author{Zujian Wang$^{1,2}$, Mingyao Qi$^{2}$, Chun Cheng$^3$%
+%\\ \footnotesize{$^{1}$Department of Industrial Engineering, Tsinghua University, Beijing 100084, China}%
+%\\ \footnotesize{$^{2}$Research Center on Modern Logistics, Graduate School at Shenzhen,}
+%\\ \footnotesize{Tsinghua University, Shenzhen 518055, China}%
+%\\ \footnotesize{$^{3}$Department of Mathematics and Industrial Engineering and CIRRELT,}
+%\\ \footnotesize{Polytechnique Montr{\'e}al and CIRRELT, Montr{\'e}al H3C 3A7, Canada}%
+%}
 \date{} % version 11
 \end{titlepage}
 \maketitle
-
+\vspace{-.5in}
 %\newpage
-
 \abstract{
-Service network design addresses decisions related to transportation services selection and origin-to-destination commodity flow distribution. In this paper, we consider the usage of heterogeneous fleet to provide services for huge transportation network. We propose both arc-based and cycle-path models to formulate the problem. A hybrid algorithm is presented to solve large-scale instances. The method includes pricing and cutting techniques to achieve stronger lower bounds, as well as a local search algorithm to obtain high-quality solutions. Computational study indicates the effectiveness and efficiency of the proposed algorithm when compared with the state-of-the-art solver CPLEX.
+Service network design addresses decisions related to transportation services selection and origin-to-destination commodity flow distribution. In this paper, we consider the usage of a heterogeneous fleet to provide services for huge transportation network. We propose both arc-based and cycle-path models to formulate the problem. A hybrid algorithm is presented to solve large-scale instances. The method includes pricing and cutting techniques to achieve stronger lower bounds, as well as a local search algorithm to obtain high-quality solutions. Computational study indicates the effectiveness and efficiency of the proposed algorithm when compared with the state-of-the-art solver CPLEX.
 }
 
-\vspace{.25in}
+\vspace{.15in}
 
 \noindent {\bf Keywords:} service network design; heterogeneous fleet; column generation; cutting plane; local search
 
@@ -78,16 +74,15 @@ Service network design addresses decisions related to transportation services se
 %%%%%%%%%%%%%%%%
 % INTRODUCTION %
 %%%%%%%%%%%%%%%%
-
 \doublespace
 %\singlespace
 \section{Introduction}
 Freight transportation plays an increasingly important role because of rapid development of e-commerce. Carriers are facing tremendous pressure from growing competition and start to pay more attention to optimize their transportation network. Service network design (SND) formulations address issues related to the tactical planning for consolidation-based freight transportation systems. Specifically, such formulations make decisions on selecting transportation services and distributing origin-destination (O-D) commodity flow. Network links represent services with operational assets (e.g. vehicles, crews and power units) in SND formulations. Asset management concentrates on the operation and schedule of assets which require balance at each terminal in order to be available for services.
 
-%1. heterogeneous fleet; 2. large-scale;
-Most researchers assume that transportation system is serviced by homogenous assets which have the same property. Nevertheless, it is a common practice to employ heterogeneous fleet in transportation and logistics management for carriers. In the literature, only a small amount of efforts are devoted to considering heterogeneous fleet, e.g. \cite{Kim1999Multimodal} and \cite{li2017design}. Moveover, with the improvement of logistics infrastructure, carriers are confronted with increasingly huge transportation network. Since service network design problem is NP-hard, it is difficult to find a feasible solution for large-scale instances. Therefore, there is an urgent need for efficient algorithms to reduce costs for carriers in real-life application.
+%1. a heterogeneous fleet; 2. large-scale;
+Most researchers assume that transportation system is serviced by homogenous assets which have the same property. Nevertheless, it is a common practice to employ a heterogeneous fleet in transportation and logistics management for carriers. In the literature, only a small amount of efforts are devoted to considering a heterogeneous fleet, e.g. \cite{Kim1999Multimodal} and \cite{li2017design}. Moveover, with the improvement of logistics infrastructure, carriers are confronted with increasingly huge transportation network. Since service network design problem is NP-hard, it is difficult to find a feasible solution for large-scale instances. Therefore, there is an urgent need for efficient algorithms to reduce costs for carriers in real-life application.
 
-Our goal of this paper is to address this issue related to heterogeneous assets and take vehicles as an example to formulate service network design problem. Furthermore, efficient algorithms are introduced to help carriers reduce logistics-related costs when dealing with huge transportation network. Specifically, this paper makes the following contributions to the literature: First, we present both arc-based and cycle-path formulations for service network design considering heterogeneous fleet. Second, a hybrid algorithm including column generation, cutting plane and local search methods is introduced to solve large-scale instances. Moreover, the proposed algorithm provides high-quality both lower bounds and feasible solutions efficiently, and outperforms CPLEX running 10 hours of CPU time.
+Our goal of this paper is to address this issue related to heterogeneous assets and take vehicles as an example to formulate service network design problem. Furthermore, efficient algorithms are introduced to help carriers reduce logistics-related costs when dealing with huge transportation network. Specifically, this paper makes the following contributions to the literature: First, we present both arc-based and cycle-path formulations for service network design considering a heterogeneous fleet. Second, a hybrid algorithm including column generation, cutting plane and local search methods is introduced to solve large-scale instances. Moreover, the proposed algorithm provides high-quality both lower bounds and feasible solutions efficiently, and outperforms CPLEX running 10 hours of CPU time.
 
 The outline of this paper is as follows. In \autoref{review}, a brief literature review is elaborated. We describe the problem and propose both arc-based and cycle-path formulations in \autoref{formulation}. \autoref{method} is devoted to the proposed hybrid algorithm, whereas experimental results is presented in \autoref{experiment}. Concluding remarks is given in \autoref{conclusion}.
 
@@ -97,7 +92,7 @@ Service network design contains the tactical planning decisions on selecting tra
 
 With respect to the way of formulating SND, it is general to propose arc-based formulations in the literature. While \cite{Andersen2009bService} present four alternative formulations and analyze strengths and weaknesses of each formulation. The experimental results show that formulations based on cycle variables outperform other formulations in both solution quality and time. However, the number of generated cycles grows exponentially and requires more efficient enumeration algorithm. Consequently, \cite{Andersen2011Branch} propose an efficient branch-and-price scheme for the cycle-based formulation to avoid the enumeration of cycles. Their algorithm contains two subproblems for the dynamical construction of paths for commodities and cycles for vehicles.
 
-Since the SND problem is NP-hard, heuristic methods are preferred choices. \cite{Pedersen2009Models} present a two-phase tabu search meta-heuristic framework for the arc-based formulation. The proposed algorithm includes exploration phase to build neighborhoods and feasibility phase to implement an infeasibility-monitoring procedure for reaching good feasible solutions. \cite{Teypaz2010A} present a three-step decomposition heuristic to solve large-scale freight transportation formulation and build comprehensive solutions for real-life size instances. \cite{VuDucToulouse} propose a three-phase meta-heuristic method combining neighbourhood-based and exact methods. Additionally, computational results on large-scale benchmark instances indicate the efficiency of the algorithm. Another meta-heuristic combining a cutting-plane scheme to obtain lower bound and a variable fixing procedure to cut down the dimension of the problem is introduced in \cite{Chouman2015Cutting}. \cite{Crainic2016Service} propose a new service network design model with resource constraints and design a solution approach combining column generation and slope scaling methods to find high-quality solutions.
+Since SND problem is NP-hard, heuristic methods are preferred choices. \cite{Pedersen2009Models} present a two-phase tabu search meta-heuristic framework for the arc-based formulation. The proposed algorithm includes exploration phase to build neighborhoods and feasibility phase to implement an infeasibility-monitoring procedure for reaching good feasible solutions. \cite{Teypaz2010A} present a three-step decomposition heuristic to solve large-scale freight transportation formulation and build comprehensive solutions for real-life size instances. \cite{VuDucToulouse} propose a three-phase meta-heuristic method combining neighbourhood-based and exact methods. Additionally, computational results on large-scale benchmark instances indicate the efficiency of the algorithm. Another meta-heuristic combining a cutting-plane scheme to obtain lower bound and a variable fixing procedure to cut down the dimension of the problem is introduced in \cite{Chouman2015Cutting}. \cite{Crainic2016Service} propose a new service network design model with resource constraints and design a solution approach combining column generation and slope scaling methods to find high-quality solutions.
 
  Only a single asset type is considered in the aforementioned literature. As for heterogeneous assets, especially multiple types of vehicles, \cite{Kim1999Multimodal} introduce three different but equivalent formulations and their potentially significant difference in computational time. They also present two sets of valid inequalities to strengthen lower bounds. However, no efficient algorithm is mentioned to solve those formulations in that paper. \cite{li2017design} propose a tabu search based meta-heuristic to solve arc-based formulation for design-balanced capacitated multicommodity network design with heterogeneous assets. However, the numbers of each fleet type employed by each service are not decided explicitly in their formulation. Moreover the scale of those experimental instances solved by the proposed algorithm cannot satisfy the real-life demand. The biggest instance in that paper only considers 25 nodes, 50 commodities and 215 arcs.
 
@@ -105,7 +100,7 @@ Since the SND problem is NP-hard, heuristic methods are preferred choices. \cite
 In this section, we describe the problem and propose two equivalent formulations based on arc and cycle-path respectively.
 
 \subsection{Problem description}
-Since most literature assume homogeneous fleet is employed which may not accord with the common practices, we take heterogeneous fleet into consideration in this paper. The example network with heterogeneous fleet is shown in \autoref{Fig1}. Under this assumption, the number of different type of vehicles should be decided on each arc. In \autoref{Fig1}, there are two types of fleet providing services and arcs in solid line are labeled by the number of specific type of vehicles. At each node the numbers of same type of vehicles entering and leaving equals. A cycle consists of a sequence of arcs satisfying design-balance requirements of the same type of vehicles, e.g., $\{ (A,D),(D,C),(C,B),(B,A) \}$. A path starts at the origin of a commodity and ends at its destination. Suppose there is a commodity with origin $A$ and destination $G$, thus $\{ (A,D),(D,G) \}$ and $\{ (A,D),(D,F),(F,G) \}$ are two paths. Note that arc $(A,D)$ employs both two types of vehicles to provide transportation services. Dashed-line arcs like $(E,A)$, $(C,F)$ and $(G,E)$ mean they are not selected as a service to open.
+Since most literature assume homogeneous fleet is employed which may not accord with the common practices, we take heterogeneous fleet issue into consideration in this paper. The example network with a heterogeneous fleet is shown in \autoref{Fig1}. Under this assumption, the number of different type of vehicles should be decided on each arc. In \autoref{Fig1}, there are two types of fleet providing services and arcs in solid line are labeled by the number of specific type of vehicles. At each node the numbers of same type of vehicles entering and leaving equals. A cycle consists of a sequence of arcs satisfying design-balance requirements of the same type of vehicles, e.g., $\{ (A,D),(D,C),(C,B),(B,A) \}$. A path starts at the origin of a commodity and ends at its destination. Suppose there is a commodity with origin $A$ and destination $G$, thus $\{ (A,D),(D,G) \}$ and $\{ (A,D),(D,F),(F,G) \}$ are two paths. Note that arc $(A,D)$ employs both two types of vehicles to provide transportation services. Dashed-line arcs like $(E,A)$, $(C,F)$ and $(G,E)$ mean they are not selected as a service to open.
 
 \begin{figure}[H]
 \setlength{\abovecaptionskip}{-5pt}
@@ -133,7 +128,7 @@ d^k&  & if \ i=o(k) \\
 Two sets of decision variables are defined as follows.
 \begin{itemize}
   \item Continuous variable: $x_{ij}^k$ represents the amount of flow with respect to commodity $k\in K$ on arc $(i,j)\in A$;
-  \item Integer variable: $y_{ij}^f$ denotes the number of fleet type $f\in F$ that provide transportation services on arc $(i,j)\in A$.
+  \item Integer variable: $y_{ij}^f$ denotes the number of fleet type $f\in F$ providing transportation services on arc $(i,j)\in A$.
 \end{itemize}
 
 The model is formulated as follows:
@@ -147,7 +142,7 @@ The model is formulated as follows:
          &   y_{ij}^f \in Z_0^+  \quad  \forall (i,j)\in A,\forall f\in F, \label{yA}
 \end{align}
 
-The objective function (\ref{objA}) minimizes the sum of the total commodity flow costs and the fixed costs for selecting and operating transportation service with respect to heterogeneous fleet. Constraints (\ref{demandA}) represent the flow conversation relations for each node and each commodity. Equations (\ref{dbA}) are the design-balance constraints, which ensure the same number of each type of vehicles entering and leaving a node. Through Constraints (\ref{capacityA}), we enforce the total flow cannot exceed the total capacity provided by all vehicles on each arc. Finally, variable-type restrictions appear in Constraints (\ref{xA}) and (\ref{yA}).
+The objective function (\ref{objA}) minimizes the sum of the total commodity flow costs and the fixed costs for selecting and operating transportation service with respect to a heterogeneous fleet. Constraints (\ref{demandA}) represent the flow conversation relations for each node and each commodity. Equations (\ref{dbA}) are the design-balance constraints, which ensure the same number of each type of vehicles entering and leaving a node. Through constraints (\ref{capacityA}), we enforce the total flow cannot exceed the total capacity provided by all vehicles on each arc. Finally, variable-type restrictions appear in constraints (\ref{xA}) and (\ref{yA}).
 
 \subsection{Cycle-path formulation}
 Let $Q^f$ represent the set of all design cycle with respect to fleet type $f\in F$. And we define the set of all paths with respect to commodity $k\in K$ as $P^k$. Two sets of decision variables are given as follows.
@@ -171,7 +166,7 @@ The fixed cost of cycle $q$ with respect to fleet type $f$ is denoted $h_q^f$, w
          &      y_q^f \in Z_0^+     \quad       \forall q\in Q^f, \forall f\in F    \label{yCP}
 \end{align}
 
-The objective function (\ref{objCP}) minimizes the total cost calculated as the sum of the flow costs on paths plus the fixed costs for selected cycles with respect to specific type of vehicle.Through Constraints (\ref{capacityCP}), we enforce service capacity restrictions on each arc. Constraints (\ref{demandCP}) ensure demand satisfaction corresponding to the flow conservation equations for each commodity. Finally, Constraints (\ref{xCP}) and (\ref{yCP}) give variable-type restrictions.
+The objective function (\ref{objCP}) minimizes the total cost calculated as the sum of the flow costs on paths plus the fixed costs for selected cycles with respect to specific type of vehicle.Through constraints (\ref{capacityCP}), we enforce service capacity restrictions on each arc. Constraints (\ref{demandCP}) ensure demand satisfaction corresponding to the flow conservation equations for each commodity. Finally, constraints (\ref{xCP}) and (\ref{yCP}) give variable-type restrictions.
 
 \subsection{Summary of two formulations}
 As for comparisons of the two ways to formulate service network design problem, \cite{Andersen2009bService} have performed computational study to indicate their strengths and weaknesses. The formulation based on arc is intuitively related to the description of the problem and easier to understand. Since paths and cycles are composed of arcs, the arc-based formulation is the basis of cycle-path formulation. Furthermore, the structure of cycle-path formulation is suitable for column generation approach because each path and cycle may be added to the model as a column. In this paper, local search approach which will be introduced in \autoref{method} is based on the arc-based formulation.
@@ -190,15 +185,15 @@ Since service network design problem is NP-hard, it is difficult for exact algor
     cutting plane\;
 }
 obtain lower bound\;
-use the lower bound solution as initial neighborhood\;
+use the linear solution as a initial neighborhood\;
 local search approach\;
 return lower bound and upper bound\;
 \end{algorithm}
 \subsection{Column-and-cut generation (C\&CG)}
-The column generation approach has been proved to be efficient to solve cycle-path formulation by \cite{Andersen2011Branch}. With respect to cutting-plane procedure, it is also proved to be effective in calculating tight lower bounds for CMND-related problems, see \cite{Chouman2009Commodity,Chouman2016Commodity,Chouman2015Cutting}. We combine the two methods to strengthen lower bounds for the proposed formulations.
+Column generation approach has been proved to be efficient to solve cycle-path formulation by \cite{Andersen2011Branch}. With respect to cutting-plane procedure, it is also proved to be effective in calculating tight lower bounds for CMND-related problems, see \cite{Chouman2009Commodity,Chouman2016Commodity,Chouman2015Cutting}. We combine the two methods to strengthen lower bounds for the proposed formulations.
 
 \subsubsection{Column generation (CG)}
-The linear relaxation of cycle-path formulation constitutes the master problem(MP) which is solved by CG approach. Since the number of variables in the MP is exponentially increasing, it is necessary to concentrate on a restricted master problem(RMP) which contains only a subset of variables(columns) in the MP.  The CG approach starts with some necessary cycles and paths to prevent the constraints violation. We generate one path for each commodity to satisfy its O-D demand. A reversed path from the destination of each commodity to its origin is combined with the former path to constitute a cycle. Therefore, we add a path and a cycle for each commodity as the initial columns to ensure the RMP feasible. The method adds new paths and cycles dynamically to the RMP until no additional column with negative reduced cost can be found.
+The linear relaxation of cycle-path formulation constitutes the master problem(MP) which is solved by CG approach. Since the number of variables in the MP is exponentially increasing, it is necessary to concentrate on a restricted master problem(RMP) which contains only a subset of variables(columns) in the MP.  The CG approach starts with some necessary cycles and paths to prevent the constraints violation. We generate one path for each commodity to satisfy its O-D demand. A reversed path from the destination of each commodity to its origin is generated to constitute a cycle with the former path. Therefore, we add a path and a cycle for each commodity as the initial columns to ensure the RMP feasible. The method adds new paths and cycles dynamically to the RMP until no additional column with negative reduced cost can be found.
 
 The dual variable values in the solution of the RMP are passed to the subproblem for generating new columns. Dual variables $\eta_{ij}$ and $\sigma_k$ are associated with constraints (\ref{capacityCP}) and (\ref{demandCP}) respectively. The reduced costs associated with cycle-related variable $y_q^f$ and path-related variable $x_p^k$ are given by:
 \begin{align}
@@ -206,9 +201,7 @@ The dual variable values in the solution of the RMP are passed to the subproblem
 & RP_{kp} = c_p^k - \sum_{(i,j)\in A} \delta_{ij}^p \eta_{ij} - \sigma_k = \sum_{(i,j)\in p} (c_{ij}^k - \eta_{ij}) - \sigma_k
 \end{align}
 
-We search for cycles and paths with negative reduced cost and add them to the RMP. The column generation procedure is presented in \autoref{CG}. When searching for the shortest cycle, we add a virtual node which is as same as the starting node as the destination node. Such that we can use the shortest path algorithm to find the shortest cycle. Note that dual variable $\eta_{ij} \leq 0$, then the arc costs may be negative when searching for the shortest cycle. Therefore, we employ the label-correcting algorithm implemented by \cite{Ahuja1993Network} to identify the shortest path.
-
-\vspace{.25in}
+\vspace{.05in}
 \begin{algorithm}[H]
 %\SetAlgoNoLine
 \caption{Column generation procedure}\label{CG}
@@ -240,30 +233,34 @@ add initial sets of cycles and paths to the RMP\;
 }
 %\KwOut{best feasible solution}
 \end{algorithm}
+\vspace{.1in}
+
+We search for cycles and paths with negative reduced cost and add them to the RMP. The column generation procedure is presented in \autoref{CG}. When searching for the shortest cycle, we add a virtual node which is as same as the starting node as the destination node. Such that we can use the shortest path algorithm to find the shortest cycle. Note that dual variable $\eta_{ij} \leq 0$, then the arc costs may be negative when searching for the shortest cycle. Therefore, we employ the label-correcting algorithm implemented by \cite{Ahuja1993Network} to identify the shortest path.
 
 \subsubsection{Cutting plane}
-The cutting plane procedure employs the generation of valid inequalities to strengthen lower bounds in relatively short time comparing with state-of-the-art software. We introduce two sets of valid inequalities including strong inequalities and cutset inequalities. Strong inequalities(SI) have been widely used to improve the quality of the LP lower bound, see \cite{Gendron1994RELAXATIONS,Gendron1999Multicommodity} and \cite{Chouman2015Cutting}. We extend SI to be suitable for the proposed formulations in our paper which are defined in inequalities (\ref{SI}). The main effects of SI is to restrict the flow of every commodity on an arc with no fleet to be 0.
+The cutting plane procedure employs the generation of valid inequalities to strengthen lower bounds in relatively short time comparing with state-of-the-art software. We introduce two sets of valid inequalities including strong inequalities and cutset inequalities. Strong inequalities(SI) have been widely used to improve the quality of lower bound, see \cite{Gendron1994RELAXATIONS,Gendron1999Multicommodity} and \cite{Chouman2015Cutting}. We extend SI to be suitable for the proposed formulations in our paper which are defined in inequalities (\ref{SI}). The main effects of SI is to restrict the flow of every commodity on an arc with no fleet to be 0.
 \begin{align}\label{SI}
   x_{ij}^k \leq d^k \sum_{f\in F} y_{ij}^f      \quad       \forall (i,j)\in A, \forall k\in K.
 \end{align}
 
-Cutset inequalities(CI) have been used by \cite{Chouman2015Cutting} to strengthen the lower bound for CMND with design-balanced constraints. As for the circumstance of considering heterogeneous fleet, CI have been presented by \cite{Kim1999Multimodal} which are defined as
+Cutset inequalities(CI) have been used by \cite{Chouman2015Cutting} to strengthen the lower bound for CMND with design-balanced constraints. As for the circumstance of considering a heterogeneous fleet, CI have been presented by \cite{Kim1999Multimodal} which are defined as
 \begin{align}
     \sum_{f\in F}u^f Y_{S,\bar{S}}^f \geq  D_{S,\bar{S}}
 \end{align}
 
-where we define cutset $(S,\bar{S})$ by partitioning the node set $N$ into any nonempty subset $S$ and its complement $\bar{S}=N\backslash S$. An arc $(i,j)$ that connects node $i$ in $S$ to node $j$ in $\bar{S}$  belongs to the cutset $(S,\bar{S})$. Let $Y_{S,\bar{S}}^f$ denote the total number of type $f$ vehicles used on the cutset $(S,\bar{S})$ arcs, i.e., $\sum_{(i,j)\in (S,\bar{S})} y_{ij}^f$ for the arc-based formulation and $\sum_{q\in Q^f}\sum_{(i,j)\in (S,\bar{S})} \alpha_{ij}^q y_q^f $ for the cycle-path formulation. Let $D_{S,\bar{S}}$ denote the aggregate demand of all commodities with their origin in $S$ and destination in $\bar{S}$. CI ensure the total demand that must flow from $S$ to $\bar{S}$ will be satisfied by enough capacity on the arcs of $(S,\bar{S})$. In general, the LP solution will not violate CI. Therefore, we lift CI by using a integer rounding procedure to produce $Chv\acute{a}tal$-$Gomory$ (C-G) cuts which are proved to be valid by \cite{Kim1999Multimodal}. The impact of adding cuts on the pricing problem is negligible, thus there is no need to modify arc costs.
+where we define cutset $(S,\bar{S})$ by partitioning the node set $N$ into any nonempty subset $S$ and its complement $\bar{S}=N\backslash S$. An arc $(i,j)$ that connects node $i$ in $S$ to node $j$ in $\bar{S}$  belongs to the cutset $(S,\bar{S})$. Let $Y_{S,\bar{S}}^f$ denote the total number of type $f$ vehicles used on the cutset $(S,\bar{S})$ arcs, i.e., $\sum_{(i,j)\in (S,\bar{S})} y_{ij}^f$ for the arc-based formulation and $\sum_{q\in Q^f}\sum_{(i,j)\in (S,\bar{S})} \alpha_{ij}^q y_q^f $ for the cycle-path formulation. Let $D_{S,\bar{S}}$ denote the aggregate demand of all commodities with their origin in $S$ and destination in $\bar{S}$. CI ensure the total demand that must flow from $S$ to $\bar{S}$ will be satisfied by enough capacity on the arcs of $(S,\bar{S})$. In general, the linear solution will not violate CI. Therefore, we lift CI by using a integer rounding procedure to produce $Chv\acute{a}tal$-$Gomory$ (C-G) cuts which are proved to be valid by \cite{Kim1999Multimodal}.
 \begin{align}
-  \sum_{f\in F} \left( \left \lceil \frac{u_f}{u_l} \right \rceil Y_{S,\bar{S}}^f  \right)  \geq \left\lceil \frac{D_{S,\bar{S}}}{u_l} \right\rceil  \quad   \forall l\in F
+  \sum_{f\in F} \left( \left \lceil \frac{u_f}{u_l} \right \rceil Y_{S,\bar{S}}^f  \right)  \geq \left\lceil \frac{D_{S,\bar{S}}}{u_l} \right\rceil  \quad   \forall l\in F, \rm{for\ all\ cutsets}\ \{S,\bar{S}\}
 \end{align}
+
 The challenge in using cutset inequalities is how to deal with large amounts of potential cutsets, it is impractical to enumerate all the associated inequalities. Moveover, it becomes more computationally expensive to lift the inequalities as the scale of the problem increases. Therefore, we only generate single-node cutset inequalities, see \cite{Chouman2016Commodity} for the details.
 
 The dynamic generation of valid inequalities is embedded in the column generation approach. Once there exist violated cuts, column generation procedure is executed again. The price-and-cut loop stops only if neither negative reduced cost columns nor violated cuts are found.
 
 \subsection{Local search}\label{localSearch}
-Since the application of SND employing heterogeneous fleet by logistics enterprises will deal with large-scale network, it is necessary to present effective algorithms to find high-quality solutions efficiently. Therefore, we propose a two-stage local search algorithm to find feasible solutions. Based on the linear solution obtained from C\&CG approach, we consider it as a initial neighborhood to search for better solutions.
+Since the application of SND employing a heterogeneous fleet by logistics enterprises will deal with large-scale network, it is necessary to present effective algorithms to find high-quality solutions efficiently. Therefore, we propose a two-stage local search algorithm to find feasible solutions. Based on the linear solution obtained from C\&CG approach, we consider it as a initial neighborhood to search for better solutions.
 
-After we obtain the lower bound, C\&CG approach will provide the value of $\bar{x}_{ij}^k$ and $\bar{y}_{ij}^f$ which are defined in arc-based formulation. Then define the arc subset including arcs with nonzero flows as $A_1$, i.e., $A_1 = \{ (i,j)\in A : \sum_{k\in K} \bar{x}_{ij}^k >0 \} $, and another arc subset including arcs with nonzero vehicles as $A_2$, i.e., $A_2 =\{  (i,j)\in A : \sum_{f\in F} \bar{y}_{ij}^f >0 \}$. It is easy to find that $A_1\subseteq A_2 \subseteq A$ because of the capacity constraints. The first stage satisfies O-D demands and determines flows on each arc $(i,j)\in A_1$. The second stage ensures the balance of vehicles and provides enough capacity for flows on each arc $(i,j)\in A_2$. The corresponding formulations in two stages are defined as follows.
+After we obtain the lower bound, C\&CG approach will provide the values of $\bar{x}_{ij}^k$ and $\bar{y}_{ij}^f$ which are defined in arc-based formulation. Then define the arc subset including arcs with nonzero flows as $A_1$, i.e., $A_1 = \{ (i,j)\in A : \sum_{k\in K} \bar{x}_{ij}^k >0 \} $, and another arc subset including arcs with nonzero vehicles as $A_2$, i.e., $A_2 =\{  (i,j)\in A : \sum_{f\in F} \bar{y}_{ij}^f >0 \}$. It is easy to find that $A_1\subseteq A_2 \subseteq A$ because of the capacity constraints. The first stage satisfies O-D demands and determines flows on each arc $(i,j)\in A_1$. The second stage ensures the balance of vehicles and provides enough capacity for flows on each arc $(i,j)\in A_2$. The corresponding formulations in two stages are defined as follows.
 
 \subsubsection{Stage 1: flow distribution problem}
 Without taking service selection and fleet assignment into account, the formulation of flow distribution problem is actually a capacitated multi-commodity minimum cost flow problem (CMCF). The values of $\sum_{(i,j)\in A_1}u^f \bar{y}_{ij}^f $ decides the capacity $u_{ij}$ of arc $(i,j)$ in $A_1$.
@@ -278,12 +275,12 @@ Without taking service selection and fleet assignment into account, the formulat
 After solving the CMCF and redistributing the flow on each arc, the arcs without flow are removed from $A_1$, i.e., $A_1 = A_1 \backslash  \{ (i,j)\in A_1 : \sum_{k\in K} x_{ij}^k =0 \}$.
 
 \subsubsection{Stage 2: fleet assignment problem}
-Once completing the flow distribution and satisfying the demands of all O-D commodities, we need to assign heterogeneous fleet to provide transportation services. Let $\Omega_{ij}$ be the total flows of all commodities distributed on arc $(i,j) \in A_2$, which equals $\sum_{k\in K}x_{ij}^k$ provided by solving CMCF in the first stage. The mathematical formulation of Stage 2 defined on arc set $A_2$ is as follow:
+Once completing the flow distribution and satisfying the demands of all O-D commodities, we need to assign a heterogeneous fleet to provide transportation services. Let $\Omega_{ij}$ be the total flows of all commodities distributed on arc $(i,j) \in A_1$, which equals $\sum_{k\in K}x_{ij}^k$ provided by solving CMCF in the first stage. The mathematical formulation of Stage 2 defined on arc set $A_2$ is as follow:
 \begin{align}
   \min & \sum_{f\in F}\sum_{(i,j)\in A_2} h_{ij}^f y_{ij}^f \\
     \rm{s.t.} & \nonumber \\
      & \sum_{j\in N_i^+}y_{ij}^f - \sum_{j\in N_i^-}y_{ji}^f = 0     \quad      \forall i\in N,\forall f\in F  \\
-     & \sum_{f\in F} u^f y_{ij}^f \geq \Omega_{ij}      \quad       \forall (i,j)\in A_2   \label{cap} \\
+     & \sum_{f\in F} u^f y_{ij}^f \geq \Omega_{ij}      \quad       \forall (i,j)\in A_1   \label{cap} \\
      & y_{ij}^f \in Z_0^+       \quad       \forall (i,j)\in A_2, \forall f\in F
 \end{align}
 
@@ -292,7 +289,7 @@ Constraints (\ref{cap}) ensure each service arc will provide sufficient vehicle 
 \subsubsection{Cycle-based neighborhoods}
 After the two formulations are solved, we obtain a feasible solution of the original problem. The quality of the feasible solution depends on the two arc subsets $A_1$ and $A_2$. To find promising $A_1$ and $A_2$, we introduce cycle-based neighborhoods to search for better feasible solutions. The cycle-based neighborhoods have been presented and proved to be efficient when solving CMND-related problems, see \cite{Ghamlouche2003Cycle, Ghamlouche2004Path,li2017design}.
 
-The cycle-based neighborhoods aim at redirecting flow from one path to another, and exploring the space of arc subsets $A_1$ and $A_2$ through opening or closing some arcs. To illustrate, considering the partial network in \autoref{cycle}, there is a cycle formed by paths $\{ (A,B),(B,C),(C,F) \}$ and $\{ (A,E),(E,F)\}$. If we redirect the flow from the former to the latter, a new solution will be generated by opening arcs $(A,E),(E,F)$ and closing empty arcs $(A,B),(B,C),(C,F)$. The procedure of finding a cycle-based neighborhood can be summarized as follows.
+The cycle-based neighborhoods aim at redirecting flow from one path to another, and exploring the space of arc subsets $A_1$ and $A_2$ through opening or closing some arcs. To illustrate, considering the partial network in \autoref{cycle}, there is a cycle formed by paths $\{ (A,B),(B,C),(C,F) \}$ and $\{ (A,E),(E,F)\}$. If we redirect the flow from the former to the latter, a new neighborhood will be generated by opening arcs $(A,E),(E,F)$ and closing empty arcs $(A,B),(B,C),(C,F)$. The procedure of finding a cycle-based neighborhood can be summarized as follows.
 \begin{itemize}
   \item Identify a cycle containing two paths connecting two points.
   \item Redirect the flow from one path to another and ensure that at least one open arc becomes empty.
@@ -337,7 +334,7 @@ Such a residual network aims at identifying the lowest-cost cycle containing arc
 \setlength{\abovecaptionskip}{-5pt}
 \setlength{\belowcaptionskip}{-5pt}
 \centering
-\includegraphics[width=0.9\linewidth]{F3.png}
+\includegraphics[width=0.8\linewidth]{F3.png}
 \caption{Network example associated with $(A,B)$}
 \label{NetworkExample}
 \end{figure}
@@ -379,7 +376,6 @@ Once the lowest cost cycle is found, $A_1$ is updated by the move including open
 \KwOut{best feasible solution}
 \end{algorithm}
 
-
 \section{Numerical experiments and analyses}\label{experiment}
 The computation study is implemented in C++, using CPLEX 12.63 as the linear programming solver. All experiments are performed using a computer with four 64-bit 2.4 GHz Intel Core processors and 4 GB of RAM, operating under Windows 10. Computing time is reported in seconds.
 
@@ -392,22 +388,22 @@ During the process of computing lower bound, to avoid instability, we use the CP
 %max iteration of local search
 As for the maximum iteration of local search algorithm, we choose two instances randomly from the generated 30 instances, i.e., instance 15 and instance 23 whose properties are listed in \autoref{results} in detail. We record the change of total cost for the two instances in each local search iteration to illustrate the evolution of solution values. As \autoref{Evolution} shows, the solution values are improved very significantly in previous several iterations. But the improvement tendency of the solution value becomes weak near 50 iterations. Therefore, we set the maximum iteration number as 50.
 
-Furthermore, we find it easy to obtain a good solution in a short time when solving the second stage in local search procedure. There is no need to solving the second stage optimally. Therefore the fleet assignment problem is solved by CPLEX with a time limit of 30 seconds.
+Furthermore, we find it easy to obtain a good solution in a short time when solving the second stage in local search procedure. There is no need to solving the second stage optimally. Therefore the fleet assignment problem is solved by CPLEX with a time limit of 30 seconds. Each instance is only solved once by the proposed hybrid algorithm due to the stability of results.
 \begin{figure}[H]
 \setlength{\abovecaptionskip}{-5pt}
 \setlength{\belowcaptionskip}{-5pt}
 \centering
-\includegraphics[width=0.8\linewidth]{F4.eps}
+\includegraphics[width=0.7\linewidth]{F4.eps}
 \caption{Evolution of solution values obtained by local search approach}
 \label{Evolution}
 \end{figure}
 
 \subsection{Computational results}
-The scope of the section is to evaluate the performance of the proposed solution method. In particular, We compare the results with CPLEX running 10 hours of CPU time to show clearly its effectiveness and efficiency in strengthening the lower bounds and finding high-quality feasible solutions. The comparison results with respect to 30 large-scale instances are shown in \autoref{results}. Without loss of generality, the values of all lower bound, upper bound and computing time are round to integers to show in \autoref{results}.
+The scope of the section is to evaluate the performance of the proposed solution method. In particular, We compare the results with CPLEX running 10 hours of CPU time to show clearly its effectiveness and efficiency in strengthening lower bounds and finding high-quality feasible solutions. The comparison results with respect to 30 large-scale instances are shown in \autoref{results}. Without loss of generality, the values of all lower bound, upper bound and computing time are round to integers to show in \autoref{results}.
 
 The lower bounds and upper bounds obtained by CPLEX running 10 hours of CPU time are shown in Column LB$_1$ and UB$_1$. Let GAP$_1$ denote the percentage gap between LB$_1$ and UB$_1$, which is calculated as $\rm \frac{UB_1 - LB_1}{UB_1}\times 100$. The lower bounds, total number of cuts and total computing time obtained by column-and-cut generation approach are displayed in column LB$_2$, Cuts and T$_1$, respectively. The percentage gap between LB$_1$ and LB$_2$ is shown in column GAP$_2$, which is calculated as $\rm \frac{LB_2 - LB_1}{LB_2}\times 100$. Column UB$_2$ and T$_2$ display the upper bounds and computing time of local search approach. Column GAP$_3$ denotes the percentage gap between UB$_1$ and UB$_2$, i.e., $\rm \frac{UB_2 - UB_1}{UB_2}\times 100$. The last column GAP$_4$ shows the percentage gap between UB$_2$ and LB$_2$, which is calculated as $\rm \frac{UB_2 - LB_2}{UB_2}\times 100$.
 
-We calculate the distribution of four relative percentage gaps listed in \autoref{results} and show the results in \autoref{distributions}. GAP$_1$ and GAP$_4$ denote the relative gaps between lower bounds and upper bounds obtained by CPLEX and the proposed hybrid algorithm with respect to 30 instances. The gaps of most instances are more than 50 when solved by CPLEX, by contrast, the gaps of most instances are between 10 and 20 when solved by the proposed hybrid algorithm. In general, CPLEX achieves relative gap by 50.90\% on average after 10 hours of CPU time. Nevertheless, the proposed hybrid algorithm achieves relative gap by 18.14\% and only takes 2124 seconds averagely. 
+We calculate the distribution of four relative percentage gaps listed in \autoref{results} and show the results in \autoref{distributions}. GAP$_1$ and GAP$_4$ denote the relative gaps between lower bounds and upper bounds obtained by CPLEX and the proposed hybrid algorithm with respect to 30 instances. The gaps of most instances are more than 50\% when solved by CPLEX, by contrast, the gaps of most instances are between 10\% and 20\% when solved by the proposed hybrid algorithm. In general, CPLEX achieves relative gap by 50.90\% on average after 10 hours of CPU time. Nevertheless, the proposed hybrid algorithm achieves relative gap by 18.14\% and only takes 2124 seconds averagely.
 
 \begin{table}[H]
 \setlength{\abovecaptionskip}{-3pt}
@@ -460,12 +456,6 @@ GAP$_4$} \bigstrut\\
 \end{tabular}%
 
 \end{table}%
-
-\subsubsection{Evaluation of column-and-cut generation approach}
-\autoref{results} displays the performance of column-and-cut generation approach with respect to lower bound. Comparing with CPLEX running 10 hours, C\&CG approach finds better lower bounds in very short time. The values of GAP$_2$ being positive means C\&CG approach can find tighter lower bounds. In general, C\&CG approach achieves stronger lower bounds by 2.34\% on average comparing with CPLEX, and only takes 563 seconds averagely. 
-
-This could signify the efficiency of C\&CG method in searching for promising columns to reduce the problem size. Then the cuts are added to strengthen the lower bound by identifying violated valid inequalities. Although the improvements are not significantly, it is still impressive considering the computing time. It only takes hundreds of seconds to outperform CPLEX running 10 hours.
-
 \begin{table}[H]
 \setlength{\abovecaptionskip}{-3pt}
 \setlength{\belowcaptionskip}{5pt}
@@ -492,24 +482,35 @@ GAP$_4$ & 22    & 8     & 0     & 0     & 0 \bigstrut[b]\\
 
 \end{table}%
 
-\subsubsection{Evaluation of local search approach}
-The results with respect to local search approach demonstrate its efficiency in searching for high-quality solutions for large-scale instances, which are illustrated in \autoref{results}. The improvements calculated through GAP$_3$ of several instances may exceed one hundred percentage. In general, local search approach improves the upper bounds by -72.29\% on average comparing with CPLEX, and only takes 1561 seconds averagely. The distribution of GAP$_3$ in \autoref{distributions} displays the significant improvement of upper bounds by local search approach.
-
-\autoref{threeUB} shows the comparative upper bounds of CPLEX and local search approach. We display both the initial solution values at the first iteration and the best solution values obtained by local search approach. A majority of the initial solution values line is under the line of the best solution value by CPLEX. Therefore, it confirms that the linear solutions obtained by C\&CG approach provide good neighborhood for local search approach to find high-quality initial solutions.
+\subsubsection{Evaluation of column-and-cut generation approach}
+\autoref{results} displays the performance of column-and-cut generation approach with respect to lower bound. Comparing with CPLEX running 10 hours, C\&CG approach finds better lower bounds in very short time. The values of GAP$_2$ being positive means C\&CG approach can find tighter lower bounds. In general, C\&CG approach achieves stronger lower bounds by 2.34\% on average comparing with CPLEX, and only takes 563 seconds averagely.
 
 \begin{figure}[H]
 \setlength{\abovecaptionskip}{-5pt}
 \setlength{\belowcaptionskip}{-5pt}
 \centering
-\includegraphics[width=0.9\linewidth]{F5.eps}
-\caption{Comparative upper bounds of CPLEX and local search approach}
+\includegraphics[width=0.8\linewidth]{F5.eps}
+\caption{The gaps between LB$_2$ and the initial linear relaxation bounds}
+\label{LPgaps}
+\end{figure}
+
+The results show clearly the effectiveness of C\&CG approach in improving the quality of the lower bounds. Although the improvements are not significantly, it is still impressive considering the computing time. It only takes hundreds of seconds to outperform CPLEX running 10 hours. This could signify the efficiency of C\&CG method in searching for promising columns to reduce the problem size. Moreover, we also calculate the improvements comparing with the first linear relaxation (LP) bounds, which is denoted $\rm \frac{LB_2 - LP}{LB_2}\times 100$. The results of 30 instances are shown in \autoref{LPgaps}. It demonstrates the effectiveness of these inequalities whose number is 323 on average for each instance in strengthening the lower bounds. As we can see from \autoref{LPgaps}, the effects of adding cuts vary with each instance.
+
+\subsubsection{Evaluation of local search approach}
+The results with respect to local search approach demonstrate its efficiency in searching for high-quality solutions for large-scale instances, which are illustrated in \autoref{results}. The improvements calculated through GAP$_3$ of several instances may exceed -100\%. In general, local search approach improves the upper bounds by -72.29\% on average comparing with CPLEX, and only takes 1561 seconds averagely. Although local search approach fails to find better solutions than CPLEX for two instances, the distribution of GAP$_3$ in \autoref{distributions} still displays the significant improvement of upper bounds.
+\begin{figure}[H]
+\setlength{\abovecaptionskip}{-5pt}
+\setlength{\belowcaptionskip}{-5pt}
+\centering
+\includegraphics[width=0.8\linewidth]{F6.eps}
+\caption{Comparative upper bounds of CPLEX and local search (LS) approach}
 \label{threeUB}
 \end{figure}
 
-\subsubsection{Impact of heterogeneous fleet issue}
-This section aims to examine the impact of heterogeneous fleet and demonstrate its necessity. In this respect, two small-scale test instances which can be solved optimally by CPLEX are randomly generated. Different numbers of fleet type provide transportation services over the two networks. We generate multiple combinations for each certain number of fleet type and take an average as the total cost. Main parameters of these networks and average total costs are shown in \autoref{heterogeneous}.
+\autoref{threeUB} shows the comparative upper bounds of CPLEX and local search approach. We display both the initial solution values at the first iteration and the best solution values obtained by local search approach. A majority of the initial solution values line is under the line of the best solution value by CPLEX. Therefore, it confirms that the linear solutions obtained by C\&CG approach provide good neighborhood for local search approach to find high-quality initial solutions.
 
-We employ \autoref{twoNetwork} to intuitively show the change of total costs as the number of fleet type increases. As \autoref{twoNetwork} illustrates, the diversification of fleet types reduces total cost over the same network. It is a reasonable result which accords with practical experience.
+\subsubsection{Impact of heterogeneous fleet issue}
+This section aims to examine the impact of heterogeneous fleet issue and demonstrate its necessity. In this respect, two small-scale test instances which can be solved optimally by CPLEX are randomly generated. Different numbers of fleet type provide transportation services over the two networks. We generate multiple combinations for each certain number of fleet type and take an average as the total cost. Main parameters of these networks and average total costs are shown in \autoref{heterogeneous}.
 
 \begin{table}[H]
 \setlength{\abovecaptionskip}{-3pt}
@@ -536,18 +537,21 @@ We employ \autoref{twoNetwork} to intuitively show the change of total costs as 
 \setlength{\abovecaptionskip}{-5pt}
 \setlength{\belowcaptionskip}{-5pt}
 \centering
-\includegraphics[width=0.9\linewidth]{F6.eps}
+\includegraphics[width=0.7\linewidth]{F7.eps}
 \caption{Change of total costs as $|F|$ increases}
 \label{twoNetwork}
 \end{figure}
 
+We employ \autoref{twoNetwork} to intuitively show the change of total costs as the number of fleet type increases. As \autoref{twoNetwork} illustrates, the diversification of fleet types reduces total cost over the same network. It is a reasonable result which accords with practical experience.
+
 \section{Conclusions}\label{conclusion}
 We address heterogeneous fleet issue for service network design problem to accord with the real-life demand of transportation carriers and present two equivalent formulations based on arc and cycle-path respectively. Faced with increasingly huge logistics network, carriers are in urgent need of effective and efficient algorithms to help reduce total cost. Therefore, a hybrid algorithm combing exact and heuristic techniques is introduced to solve the proposed formulations. The method includes a column-and-cut generation procedure to efficiently achieve tight lower bounds and a local search algorithm to find high-quality solutions.
 
-The computational study indicates the merit of the proposed column-and-cut generation procedure in strengthening the lower bounds and providing a good neighborhood for the local search approach to identify high-quality initial feasible solutions. The results also show the effectiveness of cycle-based neighborhood in searching for promising solutions. Both exact and heuristic techniques are proved to outperform the state-of-the-art MIP solver CPLEX. This performance appears more remarkable when comparing the computational efforts required by identifying lower bounds and upper bounds for the large-scale instances. We also perform computational experiments to illustrate the impact of heterogeneous fleet issue. The results show that the diversification of fleet types help reduce total cost for carriers.
-\section*{Acknowledgments}
+The computational study indicates the merit of the proposed column-and-cut generation procedure in strengthening lower bounds and providing a good neighborhood for the local search approach to identify high-quality initial feasible solutions. The results also show the effectiveness of cycle-based neighborhood in searching for promising solutions. Both exact and heuristic techniques are proved to outperform the state-of-the-art MIP solver CPLEX running 10 hours of CPU time. This performance appears more remarkable when comparing the computational efforts required by identifying lower bounds and upper bounds for the large-scale instances. We also perform computational experiments to illustrate the impact of heterogeneous fleet issue. The results show that the diversification of fleet types helps reduce total cost for carriers.
 
-This work was supported by the National Natural Science Foundation of China
+%\section*{Acknowledgments}
+%This work was supported by the National Natural Science Foundation of China
+
 \bibliographystyle{ormsv080} % outcomment this and next line in Case 1
 \bibliography{References} % if more than one, comma separated
 \end{document}
